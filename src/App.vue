@@ -30,8 +30,7 @@ const showing = ref(true)
   align-content: center;
 }
 .page-container {
-  padding-top: 150px;
-  margin: auto;
+  max-width: 80%;
 }
 .teapot {
   font-family: monospace;
@@ -58,6 +57,7 @@ header {
     font-size: 500%;
   }
   .page-container {
+    max-width: 60%;
     justify-content: center;
     padding: 0;
   }

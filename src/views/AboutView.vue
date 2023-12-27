@@ -10,7 +10,3 @@ import Resume from '@/components/Resume.vue';
     </p>
     <Resume/>
 </template>
-
-<style>
-
-</style>

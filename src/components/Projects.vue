@@ -1,5 +1,4 @@
-
-<template>
+<template class="mobileText" >
     <div class="title accent">
         My Projects!
     </div>
@@ -18,3 +17,7 @@
         </tr>
     </td>
 </template>
+
+
+<style scoped>
+</style>

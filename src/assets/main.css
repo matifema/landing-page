@@ -1,0 +1,54 @@
+@import './base.css';
+
+#app {
+  display: grid;
+  margin: auto;
+  min-width: 100%;
+  min-height: 100vh;
+}
+a {
+  text-decoration:none;
+  color: var(--color-text);
+  transition: 0.4s;
+  padding: 3px;
+}
+.accent {
+  text-decoration:none;
+  color: var(--accent);
+  transition: 0.4s;
+  padding: 3px;
+}
+.title {
+  font-size: 3vh;
+}
+.text {
+  font-size: 2vh;
+}
+
+@media (hover: hover) {
+  a:hover {
+    background-color: hsla(160, 100%, 37%, 0.2);
+  }
+}
+@media (min-width: 800px) {
+  body {
+    display: flex;
+    background-color: var(--vt-c-black);
+    background-image: url('./bg.png');
+    background-size: cover;  /* Cover the entire viewport */
+    background-repeat: no-repeat;
+    background-attachment: fixed;  /* Fixed background */
+  }
+  .title {
+    font-size: 5vh;
+  }
+  .text {
+    font-size: 3vh;
+  }  
+}
+.card {
+  background-color: var(--vt-c-black-soft);
+  border-radius: 20px;
+  padding: 10px;
+  margin-bottom: 20px;
+}

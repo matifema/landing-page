@@ -1,0 +1,53 @@
+﻿Marco T. Ferri Marini
+________________
+
+email: marcoferri462@gmail.com                                 
+website:www.matifema.com
+
+
+Summary
+Computer Science student and freelance developer with a passion for coding and problem-solving. 
+Aspires to innovate in software development, leveraging skills in various programming languages and a keen interest in AI, machine learning and biomimetics.
+
+
+Work Experience
+Freelance Developer (Dec 2022 - Present)
+Developing websites for private clients.
+
+
+Junior Software Engineer (Jun 2022 - Dec 2022) 
+@ Lynx S.p.A. Italy
+Developed web applications using Angular Framework.
+Gained front-end development skills: TypeScript, HTML, CSS frameworks
+
+
+Student Tutor (Jan 2021 - Dec 2021)
+Provided private lessons in physics, mathematics, and computer science (Python, C). 
+
+
+Education
+B.Sc. in Computer Science (Dec 2022 - Present) 
+@ Sapienza University of Rome.
+
+
+Generation Italy full-stack development Course (Feb 2022 - Jun 2022) 
+Full Stack Programming Course Program 
+Acquired Skills: SQL, Java, JavaScript, AngularJS. 
+
+
+Skills 
+Programming: Python, C, C#, ASM, TypeScript, Java, JavaScript, HTML, Git
+Databases: SQL, MongoDB
+
+
+Personal Projects
+Octobot (C# Chess Bot) 
+Developed a chess bot using C#.
+
+
+Various Python Scripts
+Created various Python scripts for automation and data analysis tasks.
+
+
+Self-Hosted Services
+Building self-hosted solutions including a personal drive and music streaming service.

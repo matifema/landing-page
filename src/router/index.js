@@ -21,11 +21,6 @@ const router = createRouter({
       path: '/projects',
       name: 'projects',
       component: () => import('../views/ProjectsView.vue')
-    },
-    {
-      path: '/octobot',
-      name: 'octobot',
-      component: () => import('../views/OctoBotView.vue')
     }
   ]
 })

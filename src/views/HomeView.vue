@@ -11,6 +11,31 @@
     <br>
     <div class="linkslist">
       <div class="card text">
+        <a href="https://github.com/upscayl/upscayl">
+          Upscayl</a> 
+          Image scaling with stable diffusion.
+      </div>
+      <div class="card text">
+        <a href="https://github.com/EFForg/crocodilehunter">
+          Crocodilehunter</a> 
+          A tool to hunt stingrays by EFF. No, not the animal..
+      </div>
+      <div class="card text">
+        <a href="https://github.com/ParrotSec/mimikatz">
+          mimikatz</a> 
+          oh oh bye bye Windows.
+      </div>
+      <div class="card text">
+        <a href="https://github.com/jjjake/internetarchive">
+          internetarchive's repo</a> 
+          Useful to get large amounts of data, wink wink.
+      </div>
+      <div class="card text">
+        <a href="https://www.tldraw.com/">
+          tldraw</a> 
+          Paint but better.
+      </div>
+      <div class="card text">
         <a href="https://blog.apaonline.org/2023/12/14/the-multiverse-and-anthropic-principle-are-not-enough/?amp">
           The Multiverse [..] is not enough</a> 
           Article on the existence of the multiverse by Timothy Andersen. 

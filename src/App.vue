@@ -3,6 +3,11 @@ import { ref } from 'vue';
 import { RouterView } from 'vue-router'
 import NavBar from '../src/components/NavBar.vue'
 
+document.addEventListener('keydown', function(event) {
+  if (event.key === 'Enter') {
+    showing.value = false;
+  }
+});
 const showing = ref(true)
 </script>
 
@@ -12,15 +17,20 @@ const showing = ref(true)
     <br>
     <a style="cursor: pointer;" @click = "showing = !showing">I'm not a teapot</a>
   </div>
-
-  <header v-show="!showing">
-    <NavBar />
-  </header>
+  
+  <transition mode="out-in">
+    <header v-show="!showing">
+      <NavBar/>
+    </header>
+  </transition>
 
   <main v-show="!showing" class="page-container">
-    <RouterView/>
+    <router-view v-slot="{ Component }">
+      <transition mode="out-in">
+        <component :is="Component" />
+      </transition>
+    </router-view>
   </main>
-
 </template>
 
 <style scoped>
@@ -30,6 +40,7 @@ const showing = ref(true)
   align-content: center;
 }
 .page-container {
+  margin-top: 40%;
   max-width: 80%;
 }
 .teapot {
@@ -44,19 +55,20 @@ const showing = ref(true)
 header {
   justify-self: center;
   position: absolute;
-  top: 10px;
+  transform: translateY(10px);
   padding: 10px;
 }
 
 @media (min-width: 800px) {
   header {
-    background-color: var(--vt-c-black-soft);
+    background-color: var(--color-background);
     border-radius: 20px;
   }
   .teapot {
     font-size: 500%;
   }
   .page-container {
+    margin-top: auto;
     max-width: 60%;
     justify-content: center;
     padding: 0;

@@ -1,21 +1,20 @@
 <template class="mobileText" >
-    <div class="title accent">
-        My Projects!
-    </div>
-    <td class="text">
-        <tr>
-            <a href="https://github.com/matifema/tinyChessBot">OctoBot ♟️</a>
-        </tr>
-        <tr>
-            <a href="https://github.com/matifema/Jbomber">JBomber 💣</a>
-        </tr>
-        <tr>
-            <a href="https://github.com/matifema/GimmiePass">GimmiePass 🔑</a>
-        </tr>
-        <tr>
-            <a href="https://files.matifema.com">stuff</a>
-        </tr>
-    </td>
+    <main>
+        <div class="title accent">
+            my projects!
+        </div>
+        <td class="text">
+            <tr>
+                <a href="https://github.com/matifema/tinyChessBot">octoBot ♟️</a>
+            </tr>
+            <tr>
+                <a href="https://github.com/matifema/Jbomber">jbomber 💣</a>
+            </tr>
+            <tr>
+                <a href="https://github.com/matifema/GimmiePass">gimmiePass 🔑</a>
+            </tr>
+        </td>
+    </main>
 </template>
 
 

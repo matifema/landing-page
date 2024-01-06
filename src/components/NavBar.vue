@@ -1,9 +1,10 @@
 <script>
 import { RouterLink } from 'vue-router'
+import NavigateComponent from './NavigateComponent.vue';
 
 export default {
-  name: 'NavBar',
-  // any other component options...
+    name: 'NavBar',
+    components: { NavigateComponent }
 };
 </script>
 
@@ -14,14 +15,15 @@ export default {
         <RouterLink class="accent" to="/">MaTiFeMa</RouterLink>
       </h1>
       <h3>
-          Marco Tiberio Ferri Marini
+          marco tiberio ferri marini
       </h3>
   </div>
   
   <nav>
-      <RouterLink to="/">Home</RouterLink>
-      <RouterLink to="/projects">Projects</RouterLink>
-      <RouterLink to="/about">About</RouterLink>
+      <RouterLink to="/">home</RouterLink>
+      <RouterLink to="/links">links</RouterLink>
+      <RouterLink to="/projects">projects</RouterLink>
+      <RouterLink to="/about">about</RouterLink>
   </nav>
 </template>
 
@@ -45,6 +47,7 @@ nav a {
   justify-items: center;
   padding: 0 1rem;
   border-left: 1px solid var(--color-border);
+  font-size: 1.2rem;
 }
 
 .greetings h1 {
@@ -58,7 +61,7 @@ nav a {
 }
 @media (min-width: 800px) {
   nav a {
-    font-size: 20px;
+    font-size: 1.2rem;
   }
 }
 </style>

@@ -1,7 +1,7 @@
 <template class="mobileText" >
     <main>
         <div class="title accent">
-            my projects!
+            my projects 💾
         </div>
         <td class="text">
             <tr>

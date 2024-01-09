@@ -49,3 +49,14 @@ a {
 .v-leave-to {
   opacity: 0;
 }
+
+@media (min-width: 800px) {
+  body {
+    display: flex;
+    background-color: var(--vt-c-black-soft);
+    /*background-image: url('https://media4.giphy.com/media/duLaiXkHrO0n985LJb/giphy.gif?cid=ecf05e475xoekfi6en87fnz3e5xnmwe5oh3m5ui0b6l2gvzj&ep=v1_gifs_related&rid=giphy.gif&ct=s');
+    background-size:cover;  /* Cover the entire viewport */
+    background-repeat: no-repeat;
+    background-attachment: fixed;  /* Fixed background */
+  }
+}

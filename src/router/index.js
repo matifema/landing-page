@@ -27,7 +27,12 @@ const router = createRouter({
       path: '/links',
       name: 'links',
       component: () => import('../components/LinkList.vue')
-    }
+    },
+    {
+      path: "/:pathMatch(.*)*",
+      name: "NotFound",
+      component: () => import('../components/NotFound.vue')
+    },
   ]
 })
 

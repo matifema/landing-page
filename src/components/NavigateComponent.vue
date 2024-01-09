@@ -37,6 +37,10 @@ function send(){
     
 }
 
+function closehelp(){
+  helpModal.value = false
+}
+
 </script>
 
 <template>
@@ -45,7 +49,7 @@ function send(){
       > <input id="inpt" class="console" placeholder="type here.." @keyup.enter="send()" v-model="msg">
     </div>
     <Transition>
-      <HelpComponent v-show="helpModal"></HelpComponent>
+      <HelpComponent v-on:click="closehelp()" v-show="helpModal"></HelpComponent>
     </Transition>
   </main>
 </template>

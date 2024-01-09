@@ -10,21 +10,23 @@ export default {
 
 
 <template>
-  <div class="greetings">
-      <h1>
-        <RouterLink class="accent" to="/">MaTiFeMa</RouterLink>
-      </h1>
-      <h3>
-          marco tiberio ferri marini
-      </h3>
-  </div>
-  
-  <nav>
-      <RouterLink to="/">home</RouterLink>
-      <RouterLink to="/links">links</RouterLink>
-      <RouterLink to="/projects">projects</RouterLink>
-      <RouterLink to="/about">about</RouterLink>
-  </nav>
+  <main>
+    <div class="greetings">
+        <h1>
+          <RouterLink class="accent" to="/">MaTiFeMa</RouterLink>
+        </h1>
+        <h3>
+            marco tiberio ferri marini
+        </h3>
+    </div>
+    
+    <nav>
+        <RouterLink to="/">home</RouterLink>
+        <RouterLink to="/links">links</RouterLink>
+        <RouterLink to="/projects">projects</RouterLink>
+        <RouterLink to="/about">about</RouterLink>
+    </nav>
+  </main>
 </template>
 
 <style scoped>

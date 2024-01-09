@@ -8,7 +8,7 @@ document.addEventListener('keydown', function(event) {
     showing.value = false;
   }
 });
-const showing = ref(true)
+const showing = ref(false)
 </script>
 
 <template>
@@ -18,11 +18,9 @@ const showing = ref(true)
     <a style="cursor: pointer;" @click = "showing = !showing">I'm not a teapot</a>
   </div>
   
-  <transition mode="out-in">
-    <header v-show="!showing">
-      <NavBar/>
-    </header>
-  </transition>
+  <header v-show="!showing" style="margin-top: 10px;">
+    <NavBar/>
+  </header>
 
   <main v-show="!showing" class="page-container">
     <router-view v-slot="{ Component }">
@@ -40,7 +38,7 @@ const showing = ref(true)
   align-content: center;
 }
 .page-container {
-  margin-top: 40%;
+  margin-top: 60%;
   max-width: 80%;
 }
 .teapot {
@@ -55,7 +53,6 @@ const showing = ref(true)
 header {
   justify-self: center;
   position: absolute;
-  transform: translateY(10px);
   padding: 10px;
 }
 

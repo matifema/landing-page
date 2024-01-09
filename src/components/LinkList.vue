@@ -2,8 +2,8 @@
   <main>
     <h1 class="accent title">my links 🌐</h1>
     <p class="text">
-      this is a collection of links i found around the internet,
-      from useful articles, websites and repos to absolute bullishit. gl have fun!
+      a collection of links i found around the web: <br>
+      from articles, websites and repos to absolute bullshit. <br>have fun!
     </p>
     <br>
     <hr style="border-color: var(--color-background);">

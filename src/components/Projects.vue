@@ -17,7 +17,7 @@
                 <a href="https://github.com/matifema/wallbreaker/tree/main">(C#) wallbreaker 🧱</a>
             </tr>
             <tr>
-                <RouterLink to="/gameoflife">(Js) game of life 🧬</RouterLink>
+                <RouterLink to="/gameoflife">(Js) game of life 🧬 &lt- click to play it!</RouterLink>
             </tr>
         </td>
     </main>

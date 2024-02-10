@@ -6,6 +6,7 @@ const numRows = ref(0);
 const numCols = ref(0);
 const intervalDuration = ref(500);
 const isRunning = ref(false);
+const info = ref(false);
 
 onMounted(() => {
   calculateGrid();
@@ -16,6 +17,10 @@ window.addEventListener('resize', () => {
   calculateGrid();
   generateTiles();
 });
+
+function showinfo(){
+  info.value = !info.value;
+}
 
 function calculateGrid() {
   const tileWidth = 30 + 2; // width of a tile in pixels + margin
@@ -59,7 +64,7 @@ function getNeighbours(tileIndex) {
 
 function randomizeTiles() {
   tiles.value = tiles.value.map(() => {
-    return { alive: Math.random() < 0.5 }; // Roughly 50% chance of being alive
+    return { alive: Math.random() < 0.3 }; // 30% chance of being alive
   });
 }
 
@@ -83,7 +88,7 @@ function runGameCycle() {
 
   tiles.value = nextState;
 
-  setTimeout(runGameCycle, intervalDuration.value);
+  setTimeout(runGameCycle, 1000-intervalDuration.value);
 }
 
 function start() {
@@ -115,13 +120,21 @@ function reset() {
       </div>
     </div>
     <div class="controls">
+      <button @click="showinfo">info</button>
       <button @click="start">start</button>
       <button @click="stop">pause</button>
       <button @click="reset">reset</button>
       <button @click="randomizeTiles">randomize</button>
       <div class="slidecontainer">
-        <input type="range" min="50" max="1000" v-model="intervalDuration" class="slider" id="myRange">
+        <input type="range" min="50" max="950" v-model="intervalDuration" class="slider" id="myRange"> speed
       </div>
+      <p v-if="info">
+        Conway's Game of Life rules: 
+        <p>1. if an alive tiles has 1 or less alive neighbors, it dies. </p>
+        <p>2. if a dead tile has 3 alive neighbors, it becomes alive.</p>
+        <p>3. if an alive tile has 2 or 3 neighbors, it keeps living</p>
+        <p>4. if an alive tile has 4 or more alive neighbors, it dies.</p>
+      </p>
     </div>
   </main>
 </template>

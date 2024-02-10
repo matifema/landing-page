@@ -1,20 +1,20 @@
 <template class="mobileText" >
     <main>
         <div class="title accent">
-            my projects 💾
+            my projects
         </div>
         <td class="text">
             <tr>
-                <a href="https://github.com/matifema/tinyChessBot">octoBot ♟️</a>
+                <a href="https://github.com/matifema/tinyChessBot">(C#) octoBot ♟️</a>
             </tr>
             <tr>
-                <a href="https://github.com/matifema/Jbomber">jbomber 💣</a>
+                <a href="https://github.com/matifema/Jbomber">(Java) jbomber 💣</a>
             </tr>
             <tr>
-                <a href="https://github.com/matifema/GimmiePass">gimmiePass 🔑</a>
+                <a href="https://github.com/matifema/GimmiePass">(Rust) gimmiePass 🔑</a>
             </tr>
             <tr>
-                <RouterLink to="/gameoflife">Game of Life</RouterLink>
+                <RouterLink to="/gameoflife">(Js) game of life 🧬</RouterLink>
             </tr>
         </td>
     </main>

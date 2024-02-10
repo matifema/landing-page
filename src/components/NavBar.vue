@@ -1,10 +1,8 @@
 <script>
 import { RouterLink } from 'vue-router'
-import NavigateComponent from './NavigateComponent.vue';
 
 export default {
-    name: 'NavBar',
-    components: { NavigateComponent }
+    name: 'NavBar'
 };
 </script>
 

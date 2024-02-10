@@ -13,6 +13,9 @@
             <tr>
                 <a href="https://github.com/matifema/GimmiePass">gimmiePass 🔑</a>
             </tr>
+            <tr>
+                <RouterLink to="/gameoflife">Game of Life</RouterLink>
+            </tr>
         </td>
     </main>
 </template>

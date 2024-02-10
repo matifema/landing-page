@@ -29,10 +29,15 @@ const router = createRouter({
       component: () => import('../components/LinkList.vue')
     },
     {
+      path: "/gameoflife",
+      name: "gameoflife",
+      component: () => import('../components/GameOfLife.vue')
+    },
+    {
       path: "/:pathMatch(.*)*",
       name: "NotFound",
       component: () => import('../components/NotFound.vue')
-    },
+    }
   ]
 })
 

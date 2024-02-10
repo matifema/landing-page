@@ -1,28 +1,15 @@
 <script setup>
-import { ref } from 'vue';
 import { RouterView } from 'vue-router'
 import NavBar from '../src/components/NavBar.vue'
 
-document.addEventListener('keydown', function(event) {
-  if (event.key === 'Enter') {
-    showing.value = false;
-  }
-});
-const showing = ref(false)
 </script>
 
 <template>
-  <div v-show="showing" class="error">
-    <a class="teapot" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/418">Error 418 🫖</a>
-    <br>
-    <a style="cursor: pointer;" @click = "showing = !showing">I'm not a teapot</a>
-  </div>
-  
-  <header v-show="!showing" style="margin-top: 10px;">
+  <header style="margin-top: 10px;">
     <NavBar/>
   </header>
 
-  <main v-show="!showing" class="page-container">
+  <main class="page-container">
     <router-view v-slot="{ Component }">
       <transition mode="out-in">
         <component :is="Component" />

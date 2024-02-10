@@ -4,6 +4,8 @@ import { ref, onMounted, computed } from 'vue';
 const tiles = ref([]);
 const numRows = ref(0);
 const numCols = ref(0);
+const intervalDuration = ref(500);
+const isRunning = ref(false);
 
 onMounted(() => {
   calculateGrid();
@@ -30,28 +32,75 @@ function generateTiles() {
 
 function toggleTile(tile) {
   tile.alive = !tile.alive;
-  console.log(tile.alive, tiles.value.indexOf(tile))
   getNeighbours(tiles.value.indexOf(tile))
 }
 
-function start() {
-  // Start game cycle
-}
-
 function getNeighbours(tileIndex) {
-  // Calculate neighbours for the tile at tileIndex
-  let y = Math.floor(tileIndex/numCols.value);
-  let x = Math.floor(tileIndex - y * numCols.value);
-  console.log(x,y)
+  var neighbors = 0;
+  const directions = [
+    -1, 1, // left, right
+    -numCols.value, +numCols.value, // above, below
+    -numCols.value - 1, -numCols.value + 1, // top-left, top-right
+    +numCols.value - 1, +numCols.value + 1 // bottom-left, bottom-right
+  ];
 
+  directions.forEach(direction => {
+    const neighborIndex = tileIndex + direction;
+    if (neighborIndex >= 0 && neighborIndex < numRows.value * numCols.value) {
+      const neighborCol = neighborIndex % numCols.value;
+      const tileCol = tileIndex % numCols.value;
+      if (Math.abs(neighborCol - tileCol) <= 1 && tiles.value[neighborIndex].alive) {
+        neighbors += 1;
+      }
+    }
+  });
+  return neighbors;
 }
 
-function pause(){
-  // Pause game cycle
+function randomizeTiles() {
+  tiles.value = tiles.value.map(() => {
+    return { alive: Math.random() < 0.5 }; // Roughly 50% chance of being alive
+  });
 }
 
-function stop(){
-  // Stop game cycle
+function runGameCycle() {
+  if (!isRunning.value) {
+    return;
+  }
+
+  const nextState = tiles.value.map(tile => ({ ...tile }));
+
+  tiles.value.forEach((tile, index) => {
+    const aliveNeighbors = getNeighbours(index);
+    const isAlive = tile.alive;
+
+    if (isAlive && (aliveNeighbors < 2 || aliveNeighbors > 3)) {
+      nextState[index].alive = false; // die of underpopulation or overpopulation
+    } else if (!isAlive && aliveNeighbors === 3) {
+      nextState[index].alive = true; // birth condition
+    }
+  });
+
+  tiles.value = nextState;
+
+  setTimeout(runGameCycle, intervalDuration.value);
+}
+
+function start() {
+  if (isRunning.value) {
+    return;
+  }
+  isRunning.value = true;
+  runGameCycle();
+}
+
+function stop() {
+  isRunning.value = false; // This will stop the runGameCycle loop
+}
+
+function reset() {
+  stop();
+  generateTiles(); // reset grid
 }
 
 </script>
@@ -66,11 +115,12 @@ function stop(){
       </div>
     </div>
     <div class="controls">
-      <button>start</button>
-      <button>pause</button>
-      <button>reset</button>
+      <button @click="start">start</button>
+      <button @click="stop">pause</button>
+      <button @click="reset">reset</button>
+      <button @click="randomizeTiles">randomize</button>
       <div class="slidecontainer">
-        <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+        <input type="range" min="50" max="1000" v-model="intervalDuration" class="slider" id="myRange">
       </div>
     </div>
   </main>

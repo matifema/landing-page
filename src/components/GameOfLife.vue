@@ -126,7 +126,7 @@ function reset() {
       <button @click="reset">reset</button>
       <button @click="randomizeTiles">randomize</button>
       <div class="slidecontainer">
-        <input type="range" min="50" max="950" v-model="intervalDuration" class="slider" id="myRange"> speed
+        <input type="range" min="50" max="950" v-model="intervalDuration" class="slider" id="myRange">
       </div>
       <p v-if="info">
         Conway's Game of Life rules: 
@@ -161,7 +161,16 @@ function reset() {
   padding: 20px;
   position: absolute;
   bottom: 0;
+  left: 0;
+  width: fit-content;
   z-index: 9999;
+}
+@media (min-width: 800px) {
+  .controls{
+  position: absolute;
+  left: auto;
+  bottom: 0;
+}
 }
 .tile {
   width: 30px;

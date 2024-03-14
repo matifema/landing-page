@@ -1,8 +1,12 @@
 <template class="mobileText" >
     <main>
         <div class="title accent">
-            my projects
+            Projects
         </div>
+        <p class="text">
+            Some of my half-finished ideas
+        </p>
+        <hr>
         <td class="text">
             <tr>
                 <a href="https://github.com/matifema/tinyChessBot">(C#) octoBot ♟️</a>

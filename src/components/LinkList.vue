@@ -1,14 +1,12 @@
 <template>
   <main>
-    <h1 class="accent title">my links 🌐</h1>
+    <h1 class="accent title">Links</h1>
     <p class="text">
-      A collection of links from all around the web: <br>
-      from articles, websites and repos to absolute bullshit. <br>
+      A collection from all around the old wild web: <br>
+      forgotten blog posts, cool websites, code repos and absolute bullshit. <br>
       Have fun!
     </p>
-    <br>
-    <hr style="border-color: var(--color-background);">
-    <br>
+    <hr>
     <div class="linkslist">
       <div class="card text">
         <a href="https://github.com/upscayl/upscayl">
@@ -23,7 +21,7 @@
       <div class="card text">
         <a href="https://github.com/ParrotSec/mimikatz">
           mimikatz</a> 
-          oh oh bye bye Windows.
+          breaking Widows.
       </div>
       <div class="card text">
         <a href="https://github.com/jjjake/internetarchive">
@@ -31,9 +29,14 @@
           Useful to get large amounts of data, wink wink.
       </div>
       <div class="card text">
+        <a href="https://paint.js.org/">
+          Paint</a> 
+          the og Paint.
+      </div>
+      <div class="card text">
         <a href="https://www.tldraw.com/">
           tldraw</a> 
-          Paint but better.
+          the new Paint.
       </div>
       <div class="card text">
         <a href="https://blog.apaonline.org/2023/12/14/the-multiverse-and-anthropic-principle-are-not-enough/?amp">

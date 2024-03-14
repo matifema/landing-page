@@ -2,34 +2,34 @@
 import { RouterLink } from 'vue-router'
 
 export default {
-    name: 'NavBar'
+  name: 'NavBar'
 };
 </script>
 
-
 <template>
   <main>
-    <div class="greetings">
-        <h1>
-          <RouterLink class="accent" to="/">MaTiFeMa</RouterLink>
-        </h1>
-        <h3>
-            marco tiberio ferri marini
-        </h3>
-    </div>
-    
+    <h1>
+      <RouterLink class="title" to="/">MaTiFeMa</RouterLink>
+    </h1>
+
     <nav>
-        <RouterLink to="/">home</RouterLink>
-        <RouterLink to="/links">links</RouterLink>
-        <RouterLink to="/projects">projects</RouterLink>
-        <RouterLink to="/about">about</RouterLink>
+      <RouterLink to="/links">Links</RouterLink>
+      <RouterLink to="/projects">Projects</RouterLink>
+      <RouterLink to="/guestbook">Guestbook</RouterLink>
+      <RouterLink to="/about">About</RouterLink>
     </nav>
+    <hr>
   </main>
 </template>
 
 <style scoped>
+.title {
+  color: var(--accent);
+  font-weight: 800;
+  font-size: 3rem;
+}
 nav {
-  width: fit-content;
+  display: inline-block;
   margin: auto;
 }
 nav a:first-of-type {
@@ -41,8 +41,7 @@ nav a.router-link-exact-active {
 nav a.router-link-exact-active:hover {
   background-color: transparent;
 }
-nav a {
-  display: inline-block;
+nav a{
   color: var(--accent);
   justify-items: center;
   padding: 0 1rem;
@@ -50,17 +49,31 @@ nav a {
   font-size: 1.2rem;
 }
 
-.greetings h1 {
-  font-weight: 500;
-  font-size: 2.6rem;
-  text-align: center;
-}
-.greetings h3 {
-  font-size: 1.2rem;
-  text-align: center;
-}
 @media (min-width: 800px) {
-  nav a {
+  hr{
+    display: none;
+  }
+  .title {
+    float: left;
+  }
+  nav {
+    display: inline-block;
+    margin: auto;
+  }
+  nav a:first-of-type {
+    border: 0;
+  }
+  nav a.router-link-exact-active {
+    color: var(--color-text);
+  }
+  nav a.router-link-exact-active:hover {
+    background-color: transparent;
+  }
+  nav a{
+    color: var(--accent);
+    justify-items: center;
+    padding: 0 1rem;
+    border-left: 1px solid var(--color-border);
     font-size: 1.2rem;
   }
 }

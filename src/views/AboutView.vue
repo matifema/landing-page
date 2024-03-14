@@ -4,18 +4,11 @@ import Resume from '@/components/Resume.vue';
 
 <template>
   <main>
-    <h1 class="title accent">about me</h1>
+    <h1 class="title accent">About me</h1>
     <p class="text">
-      22 y/o developer who's interested in cybersec, computing and building cool things. <br>
-      Also passionate about physics, rock climbing and biomimetics.
+      22 y/o dev who's interested in cybersec, computing and building (sometimes) useful things. <br>
+      Also passionate about physics, rock climbing, dogs, pasta and biomimetics.
     </p>
     <Resume/>
   </main>
 </template>
-
-<style scoped>
-img{
-  float: left;
-  margin: 20px;
-}
-</style>

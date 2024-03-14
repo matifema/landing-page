@@ -7,13 +7,13 @@
   min-height: 100vh;
 }
 a {
-  text-decoration:none;
+  text-decoration: none;
   color: var(--color-text);
   transition: 0.4s;
   padding: 3px;
 }
 .accent {
-  text-decoration:none;
+  text-decoration: none;
   color: var(--accent);
   transition: 0.4s;
   padding: 3px;
@@ -21,20 +21,8 @@ a {
 .title{
   font-size: 2rem;
 }
-
-@media (hover: hover) {
-  a:hover {
-    background-color: rgba(210, 105, 30, 0.263);
-  }
-}
-@media (min-width: 800px) {
-  body {
-    display: flex;
-    background-color: var(--vt-c-black-soft);
-  }
-}
 .card {
-  background-color: var(--vt-c-black);
+  background-color: var(--dark);
   border-radius: 15px;
   padding: 10px;
   margin-bottom: 20px;
@@ -51,12 +39,11 @@ a {
 }
 
 @media (min-width: 800px) {
+  a:hover {
+    background-color: var(--dark);
+  }
   body {
     display: flex;
-    background-color: var(--vt-c-black-soft);
-    /*background-image: url('https://media4.giphy.com/media/duLaiXkHrO0n985LJb/giphy.gif?cid=ecf05e475xoekfi6en87fnz3e5xnmwe5oh3m5ui0b6l2gvzj&ep=v1_gifs_related&rid=giphy.gif&ct=s');
-    background-size:cover;  /* Cover the entire viewport */
-    background-repeat: no-repeat;
-    background-attachment: fixed;  /* Fixed background */
+    background-color: var(--soft-dark);
   }
 }

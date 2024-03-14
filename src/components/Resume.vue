@@ -1,11 +1,7 @@
-<script setup>
-</script>
-
-
 <template>
     <main>
         <div class="title accent">
-            get my resume:
+            GET my resume!
         </div>
         <div class="text">
             <a href="/resume.pdf" download>pdf</a>

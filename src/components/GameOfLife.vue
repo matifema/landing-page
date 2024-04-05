@@ -11,6 +11,7 @@ const info = ref(false);
 onMounted(() => {
   calculateGrid();
   generateTiles();
+  randomizeTiles();
 });
 
 window.addEventListener('resize', () => {
@@ -144,7 +145,7 @@ function reset() {
   overflow: hidden;
   justify-content: center;
   align-content: center;
-  background-color: black;
+  background-color: #1D2D44;
   display: flex;
   position: absolute;
   z-index: 9998;
@@ -178,7 +179,7 @@ function reset() {
   margin: 1px;
 }
 .deadTile{
-  background-color: rgb(37, 37, 37);
+  background-color: #1D2D44;
 }
 .aliveTile{
   background-color: rgb(196, 196, 196);

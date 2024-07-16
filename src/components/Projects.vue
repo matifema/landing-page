@@ -1,9 +1,6 @@
 <template class="mobileText" >
     <main>
-        <div class="title accent">
-            Projects
-        </div>
-        <p class="text">
+        <p class="text" style="text-align: center;">
             Some of my half-finished ideas
         </p>
         <hr>

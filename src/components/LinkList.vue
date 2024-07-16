@@ -1,13 +1,31 @@
 <template>
   <main>
-    <h1 class="accent title">Links</h1>
-    <p class="text">
+    <p class="text" style="text-align: center;">
       A collection from all around the old wild web: <br>
       forgotten blog posts, cool websites, code repos and absolute bullshit. <br>
       Have fun!
     </p>
     <hr>
     <div class="linkslist">
+      <div class="card text">
+        <a href="https://www.exploit-db.com">
+          exploit db</a> 
+          Vulnerability Database
+      </div>
+      <div class="card text">
+        <a href="http://rootkit.com/">
+          rootkit</a> 
+          hker culture
+      </div>
+      <div class="card text">
+        <a href="http://phrack.org/">
+          Phrack</a> 
+          Phrack is a magazine. It's older than the World Wide Web.
+      </div>
+      <div class="card text">
+        <a href="https://www.2600.com/">2600</a>
+        The Hacker Quarterly
+      </div>
       <div class="card text">
         <a href="https://github.com/upscayl/upscayl">
           Upscayl</a> 
@@ -54,10 +72,6 @@
       <div class="card text">
         <a href="https://squoosh.app/">Squoosh</a>
         Compress images with almost no quality loss. Nice UI
-      </div>
-      <div class="card text">
-        <a href="https://www.2600.com/">2600</a>
-        The Hacker Quarterly
       </div>
       <div class="card text">
         <a href="https://tempmail.net/">tempMail</a>

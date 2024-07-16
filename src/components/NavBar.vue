@@ -13,10 +13,10 @@ export default {
     </h1>
 
     <nav>
-      <RouterLink to="/links">Links</RouterLink>
-      <RouterLink to="/projects">Projects</RouterLink>
-      <RouterLink to="/guestbook">Guestbook</RouterLink>
-      <RouterLink to="/about">About</RouterLink>
+      <RouterLink to="/links">/links</RouterLink>
+      <RouterLink to="/projects">/projects</RouterLink>
+      <RouterLink to="/guestbook">/guestbook</RouterLink>
+      <RouterLink to="/about">/about</RouterLink>
     </nav>
     <hr>
   </main>

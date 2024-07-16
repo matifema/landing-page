@@ -2,8 +2,6 @@
 
 #app {
   display: grid;
-  min-width: 100%;
-  min-height: 100vh;
 }
 a {
   text-decoration: none;
@@ -40,9 +38,5 @@ a {
 @media (min-width: 800px) {
   a:hover {
     background-color: var(--dark);
-  }
-  body {
-    display: flex;
-    background-color: var(--soft-dark);
   }
 }

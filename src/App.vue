@@ -20,12 +20,12 @@ import NavBar from '../src/components/NavBar.vue'
 
 <style scoped>
 .page-container {
-  margin-top: 0;
-  max-width: 80%;
+  margin-top: 10%;
+  max-width:  80%;
 }
 @media(min-width: 800px){
   .page-container {
-    max-width: 100%;
+    max-width: 80%;
   }
 }
 </style>

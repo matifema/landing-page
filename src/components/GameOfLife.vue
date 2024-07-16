@@ -157,21 +157,21 @@ function reset() {
   max-height: 100%;
 }
 .controls{
-  background-color: rgba(5, 5, 5, 0.535);
+  background-color: rgba(5, 5, 5, 0.8);
   border-radius: 20px;
   padding: 20px;
   position: absolute;
+  width: fit-content;
   bottom: 0;
   left: 0;
-  width: fit-content;
   z-index: 9999;
 }
-@media (min-width: 800px) {
-  .controls{
-  position: absolute;
-  left: auto;
-  bottom: 0;
+
+button{
+  font-size: 1.2rem;
 }
+.slider{
+  min-width: 100%;
 }
 .tile {
   width: 30px;

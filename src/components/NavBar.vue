@@ -29,8 +29,9 @@ export default {
   font-size: 3rem;
 }
 nav {
+  width: 100%;
   display: inline-block;
-  margin: auto;
+  margin: 0;
 }
 nav a:first-of-type {
   border: 0;
@@ -46,10 +47,10 @@ nav a{
   justify-items: center;
   padding: 0 1rem;
   border-left: 1px solid var(--color-border);
-  font-size: 1.2rem;
+  font-size: 0.8em;
 }
 
-@media (min-width: 800px) {
+@media (min-width: 600px) {
   hr{
     display: none;
   }

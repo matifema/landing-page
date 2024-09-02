@@ -34,6 +34,15 @@ const router = createRouter({
       component: () => import('../components/GameOfLife.vue')
     },
     {
+      path: '/songscribe',
+      name: 'songscribe',
+      component: () => import('../components/SongScribe.vue')
+    },
+    {
+      path: '/songscribe/callback',
+      component: () => import('../components/SpotifyCallback.vue')
+    },
+    {
       path: "/:pathMatch(.*)*",
       name: "NotFound",
       component: () => import('../components/NotFound.vue')

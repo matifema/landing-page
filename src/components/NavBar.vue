@@ -15,7 +15,7 @@ export default {
     <nav>
       <RouterLink to="/links">/links</RouterLink>
       <RouterLink to="/projects">/projects</RouterLink>
-      <RouterLink to="/guestbook">/guestbook</RouterLink>
+      <!--<RouterLink to="/guestbook">/guestbook</RouterLink>-->
       <RouterLink to="/about">/about</RouterLink>
     </nav>
     <hr>

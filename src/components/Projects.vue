@@ -6,24 +6,26 @@
         <hr>
         <td class="text">
             <tr>
-                <a href="https://github.com/matifema/tinyChessBot">(C#) octoBot ♟️</a>
+                <RouterLink to="/songscribe">• SongScribe 🎶</RouterLink>
             </tr>
             <tr>
-                <a href="https://github.com/matifema/Jbomber">(Java) jbomber 💣</a>
+                <RouterLink to="/gameoflife">• Conway's game of life 🧬</RouterLink>
             </tr>
             <tr>
-                <a href="https://github.com/matifema/GimmiePass">(Rust) gimmiePass 🔑</a>
+                <a href="https://github.com/matifema/tinyChessBot">• OctoBot ♟️</a>
             </tr>
             <tr>
-                <a href="https://github.com/matifema/wallbreaker/tree/main">(C#) wallbreaker 🧱</a>
+                <a href="https://github.com/matifema/Jbomber">• JBomber 💣</a>
             </tr>
             <tr>
-                <RouterLink to="/gameoflife">(Js) game of life 🧬 &lt- click to play it!</RouterLink>
+                <a href="https://github.com/matifema/GimmiePass">• GimmiePass 🔑</a>
+            </tr>
+            <tr>
+                <a href="https://github.com/matifema/wallbreaker/tree/main">• Shitty Wallbreaker 🧱</a>
             </tr>
         </td>
     </main>
 </template>
-
 
 <style scoped>
 </style>

@@ -20,7 +20,7 @@
       <div class="card text">
         <a href="http://phrack.org/">
           Phrack</a> 
-          Phrack is a magazine. It's older than the World Wide Web.
+          Phrack is a magazine. It's older than the World Wide Web
       </div>
       <div class="card text">
         <a href="https://www.2600.com/">2600</a>
@@ -29,37 +29,37 @@
       <div class="card text">
         <a href="https://github.com/upscayl/upscayl">
           Upscayl</a> 
-          Image scaling with stable diffusion.
+          Image scaling with stable diffusion
       </div>
       <div class="card text">
         <a href="https://github.com/EFForg/crocodilehunter">
           Crocodilehunter</a> 
-          A tool to hunt stingrays by EFF. No, not the animal..
+          A counterespionage tool to hunt stingrays by EFF. No, not the animal..
       </div>
       <div class="card text">
         <a href="https://github.com/ParrotSec/mimikatz">
           mimikatz</a> 
-          breaking Widows.
+          breaking Widows
       </div>
       <div class="card text">
         <a href="https://github.com/jjjake/internetarchive">
           internetarchive's repo</a> 
-          Useful to get large amounts of data, wink wink.
+          Useful to get large amounts of data, wink wink
       </div>
       <div class="card text">
         <a href="https://paint.js.org/">
           Paint</a> 
-          the og Paint.
+          OG Paint
       </div>
       <div class="card text">
         <a href="https://www.tldraw.com/">
           tldraw</a> 
-          the new Paint.
+          the new Paint
       </div>
       <div class="card text">
         <a href="https://blog.apaonline.org/2023/12/14/the-multiverse-and-anthropic-principle-are-not-enough/?amp">
           The Multiverse [..] is not enough</a> 
-          Article on the existence of the multiverse by Timothy Andersen. 
+          Article on the existence of the multiverse by Timothy Andersen
       </div>
       <div class="card text">
         <a href="https://portableapps.com/apps">Portable Apps</a>
@@ -71,7 +71,7 @@
       </div>
       <div class="card text">
         <a href="https://squoosh.app/">Squoosh</a>
-        Compress images with almost no quality loss. Nice UI
+        Compress images with almost no quality loss, Nice UI
       </div>
       <div class="card text">
         <a href="https://tempmail.net/">tempMail</a>

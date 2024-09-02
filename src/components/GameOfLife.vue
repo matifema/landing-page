@@ -4,7 +4,7 @@ import { ref, onMounted, computed } from 'vue';
 const tiles = ref([]);
 const numRows = ref(0);
 const numCols = ref(0);
-const intervalDuration = ref(500);
+const intervalDuration = ref(950);
 const isRunning = ref(false);
 const info = ref(false);
 

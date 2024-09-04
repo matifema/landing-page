@@ -34,12 +34,12 @@ const router = createRouter({
       component: () => import('../components/GameOfLife.vue')
     },
     {
-      path: '/songscribe',
-      name: 'songscribe',
-      component: () => import('../components/SongScribe.vue')
+      path: '/tracklistify',
+      name: 'tracklistify',
+      component: () => import('../components/TrackListify.vue')
     },
     {
-      path: '/songscribe/callback',
+      path: '/tracklistify/callback',
       component: () => import('../components/SpotifyCallback.vue')
     },
     {

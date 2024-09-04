@@ -6,7 +6,7 @@
         <hr>
         <td class="text">
             <tr>
-                <RouterLink to="/songscribe">• SongScribe 🎶</RouterLink>
+                <RouterLink to="/tracklistify">• TrackListify 🎶</RouterLink>
             </tr>
             <tr>
                 <RouterLink to="/gameoflife">• Conway's game of life 🧬</RouterLink>

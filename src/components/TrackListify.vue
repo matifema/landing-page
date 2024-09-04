@@ -49,7 +49,7 @@
             },
             loginWithSpotify() {
             const client_id = '4fdb1905b11d41a98f93cb2174d065f9'; // Replace with your Spotify client ID
-            const redirect_uri = 'http://matifema.com/tracklistify/callback'; // Replace with your redirect URI
+            const redirect_uri = 'https://matifema.com/tracklistify/callback'; // Replace with your redirect URI
             const scope = 'user-read-private user-read-email playlist-modify-public playlist-modify-private';
             const state = this.generateRandomString(16);
 

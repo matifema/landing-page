@@ -269,7 +269,7 @@
             };
         },
         created() {
-            // In-Memory token (volatile, not refresh resistant)
+            // in-Memory token (volatile, not refresh resistant)
             this.token = this.$route.query.token;
             // TODO: change to cookie or Vuex
 
@@ -281,13 +281,16 @@
                     this.username = usrData.display_name;
 
                     if (this.username == "nadiafleur") {
-                        this.username = "hotdog"
+                        this.username = "hotdog <3"
                     }
                     
                     if (usrData.images.length > 0) {
                         this.imgSrc = usrData.images[0].url;
                     }
                 })
+            }else{
+                // if not logged in, remove eventual previous playlists ids
+                this.playlistId = null;
             }
         }
     }

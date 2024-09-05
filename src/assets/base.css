@@ -1,15 +1,15 @@
-/* color palette from <https://github.com/vuejs/theme> */
 :root {
   --accent: #748CAB;
   --dark: #0D1321;
   --soft-dark: #1e2023;
   --text: #F0EBD8;
+  --color-text: var(--text);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --color-background: var(--vt-c-black-soft);
-    --color-text: var(--text);
+    --soft-dark: #1e2023;
+    --color-text: #F0EBD8;
   }
 }
 

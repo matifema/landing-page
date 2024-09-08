@@ -36,9 +36,9 @@
                 <img style="vertical-align: middle;" height="150px" src="https://i.imgur.com/YCd4zBq.png">
                 <a style="color:rgb(30, 215, 96) ;" :href="'https://open.spotify.com/playlist/'+this.playlistId">https://open.spotify.com/playlist/...</a>
             </div>
-            <button style="background-color: rgb(195, 76, 65);" class="login-button" @click="newplaylist()">Go Back</button>
         </span>
-
+        
+        <button v-if="this.loading || this.playlistId" style="background-color: rgb(195, 76, 65);" class="inthemiddle login-button" @click="newplaylist()">Go Back</button>
     </main>
 </template>
   
@@ -74,6 +74,7 @@
             },
             newplaylist() {
                 this.playlistId = null;
+                this.$router.go(-1);
             },
             async getUserData() {
                 try {

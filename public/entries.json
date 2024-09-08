@@ -1,0 +1,102 @@
+[
+  {
+    "title": "Anna's Archive",
+    "link": "https://annas-archive.org/",
+    "description": "The modern day Library of Alexandria"
+  },
+  {
+    "title": "OverTheWire",
+    "link": "https://overthewire.org/wargames/",
+    "description": "Cybersec 101 training"
+  },
+  {
+    "title": "fmhy",
+    "link": "https://fmhy.pages.dev",
+    "description": "Free Media Heck Yeah!! (free stuff)"
+  },
+  {
+    "title": "remove bg",
+    "link": "https://www.remove.bg/upload",
+    "description": "Removes backgrounds from images"
+  },
+  {
+    "title": "phind",
+    "link": "https://www.phind.com",
+    "description": "AI search engine"
+  },
+  {
+    "title": "exploit db",
+    "link": "https://www.exploit-db.com",
+    "description": "Vulnerability Database"
+  },
+  {
+    "title": "Phrack",
+    "link": "http://phrack.org/",
+    "description": "Phrack is a magazine. It's older than the World Wide Web"
+  },
+  {
+    "title": "2600",
+    "link": "https://www.2600.com/",
+    "description": "The Hacker Quarterly"
+  },
+  {
+    "title": "Upscayl",
+    "link": "https://github.com/upscayl/upscayl",
+    "description": "Image scaling with stable diffusion"
+  },
+  {
+    "title": "Crocodilehunter",
+    "link": "https://github.com/EFForg/crocodilehunter",
+    "description": "A counterespionage tool to hunt stingrays by EFF. No, not the animal.."
+  },
+  {
+    "title": "mimikatz",
+    "link": "https://github.com/ParrotSec/mimikatz",
+    "description": "Breaking Windows"
+  },
+  {
+    "title": "internetarchive's repo",
+    "link": "https://github.com/jjjake/internetarchive",
+    "description": "Useful to get large amounts of data, wink wink"
+  },
+  {
+    "title": "Paint",
+    "link": "https://paint.js.org/",
+    "description": "OG Paint"
+  },
+  {
+    "title": "tldraw",
+    "link": "https://www.tldraw.com/",
+    "description": "The new Paint"
+  },
+  {
+    "title": "The Multiverse [..] is not enough",
+    "link": "https://blog.apaonline.org/2023/12/14/the-multiverse-and-anthropic-principle-are-not-enough/?amp",
+    "description": "Article on the existence of the multiverse by Timothy Andersen"
+  },
+  {
+    "title": "Portable Apps",
+    "link": "https://portableapps.com/apps",
+    "description": "A website filled with portable .exe apps. No installation needed, just download and run"
+  },
+  {
+    "title": "12ft Ladder",
+    "link": "https://12ft.io/",
+    "description": "Removes ads, popups and banners from most paid-content websites"
+  },
+  {
+    "title": "Squoosh",
+    "link": "https://squoosh.app/",
+    "description": "Compress images with almost no quality loss, Nice UI"
+  },
+  {
+    "title": "tempMail",
+    "link": "https://tempmail.net/",
+    "description": "Don't give out your email dude, use temporary emails"
+  },
+  {
+    "title": "tempNumber",
+    "link": "https://quackr.io/temporary-numbers",
+    "description": "Temporary numbers from all over the globe"
+  }
+]

@@ -36,6 +36,7 @@
                 <img style="vertical-align: middle;" height="150px" src="https://i.imgur.com/YCd4zBq.png">
                 <a style="color:rgb(30, 215, 96) ;" :href="'https://open.spotify.com/playlist/'+this.playlistId">https://open.spotify.com/playlist/...</a>
             </div>
+            <button style="background-color: rgb(195, 76, 65);" class="login-button" @click="newplaylist()">Go Back</button>
         </span>
 
     </main>
@@ -70,6 +71,9 @@
                     text += possible.charAt(Math.floor(Math.random() * possible.length));
                 }
                 return text;
+            },
+            newplaylist() {
+                this.playlistId = null;
             },
             async getUserData() {
                 try {

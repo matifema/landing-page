@@ -74,7 +74,7 @@
             },
             newplaylist() {
                 this.playlistId = null;
-                this.$router.go(-1);
+                window.location.href = 'https://matifema.com/tracklistify?token='+this.token;
             },
             async getUserData() {
                 try {

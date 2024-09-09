@@ -19,6 +19,10 @@
             </div>
             <p>bla bla bla description goes here...</p>
             <div class="form">
+                <select v-model="this.selectedGenre">
+                    <option disabled value="">Please Select</option>
+                    <option v-for="option in this.genres" :value="option">{{option}}</option>
+                </select>
                 <input class="userInput" maxlength="100" type="text" v-on:keyup.enter="submit" v-model="this.userText" placeholder="Type anything...">
                 <button class="login-button" @click="submit">Tracklistify</button>
             </div>
@@ -74,7 +78,7 @@
             },
             newplaylist() {
                 this.playlistId = null;
-                window.location.href = 'http://localhost:5173/tracklistify?token='+this.token;
+                //window.location.href = 'http://localhost:5173/tracklistify?token='+this.token;
             },
             async getUserData() {
                 try {
@@ -87,6 +91,21 @@
                     const data = await response.json();
                     
                     return data;
+                } catch (error) {
+                    console.error('Failed to get user data:', error);
+                }
+            },
+            async getUserGenres() {
+                try {
+                    const response = await fetch('https://api.spotify.com/v1/recommendations/available-genre-seeds', {
+                        method: 'GET',
+                        headers: {
+                            'Authorization': 'Bearer ' + this.token,
+                        }
+                    });
+                    const data = await response.json();
+                    
+                    return data.genres;
                 } catch (error) {
                     console.error('Failed to get user data:', error);
                 }
@@ -110,7 +129,12 @@
                 }
             },
             async getTracksStartingWith(letter) {
-                const query = `${letter}`;
+                let query = `${letter}`;
+                
+                if (this.selectedGenre) {
+                    query += ` genre:${encodeURIComponent(this.selectedGenre)}`;
+                }
+                
                 const limit = 20;
                 const url = `https://api.spotify.com/v1/search?q=${encodeURIComponent(query)}&type=track&limit=${limit}`;
 
@@ -118,20 +142,28 @@
                     const response = await fetch(url, {
                         method: 'GET',
                         headers: {
-                            'Authorization': 'Bearer ' + this.token,
+                            'Authorization': `Bearer ${this.token}`,
                             'Content-Type': 'application/json'
                         }
                     });
-                    
+
+                    // Check if the response is successful (status 200-299)
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! Status: ${response.status}`);
+                    }
+
                     const data = await response.json();
 
+                    // Filter tracks that start with the letter and are not in this.trackIds
                     const filteredTracks = data.tracks.items.filter(track => {
-                        return track.name.toLowerCase().startsWith(letter.toLowerCase());
+                        return track.name.toLowerCase().startsWith(letter.toLowerCase()) && 
+                            !this.trackIds.includes(track.id);  // Filter out tracks whose ID is in this.trackIds
                     });
 
                     return filteredTracks;
                 } catch (error) {
-                    console.error('Error fetching track:', error);
+                    console.error('Error fetching tracks:', error);
+                    return []; // Return an empty array in case of an error
                 }
             },
             async getAllTracks() {
@@ -271,7 +303,9 @@
                                                                                                                      ░░██████  
                                                                                                                       ░░░░░░`,
                 userText: "",
-                trackIds: []
+                trackIds: [],
+                genres: [],
+                selectedGenre: null
             };
         },
         mounted() {
@@ -296,6 +330,12 @@
                         this.imgSrc = usrData.images[0].url;
                     }
                 })
+
+
+                this.getUserGenres().then((genres) =>{
+                    this.genres = genres;
+                })
+
             }else{
                 // if not logged in, remove eventual previous playlists ids
                 console.error("token not found!!");

@@ -1,0 +1,1 @@
+git pull && npm run build && rm -rf /var/www/matifema/dist && mv ./dist /var/www/matifema

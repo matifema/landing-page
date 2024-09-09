@@ -49,8 +49,8 @@
                 return Math.floor(Math.random() * max);
             },
             loginWithSpotify() {
-            const client_id = '4fdb1905b11d41a98f93cb2174d065f9'; // Replace with your Spotify client ID
-            const redirect_uri = 'https://matifema.com/tracklistify/callback'; // Replace with your redirect URI
+            const client_id = '4fdb1905b11d41a98f93cb2174d065f9'; //90eb9703676b439eb1481321bb9f9687 
+            const redirect_uri = 'https://matifema.com/tracklistify/callback'; //http://localhost:5173/tracklistify/callback
             const scope = 'user-read-private user-read-email playlist-modify-public playlist-modify-private';
             const state = this.generateRandomString(16);
 
@@ -74,7 +74,7 @@
             },
             newplaylist() {
                 this.playlistId = null;
-                window.location.href = 'https://matifema.com/tracklistify?token='+this.token;
+                window.location.href = 'http://localhost:5173/tracklistify?token='+this.token;
             },
             async getUserData() {
                 try {
@@ -257,6 +257,7 @@
                 username: null,
                 imgSrc: null,
                 loading: false,
+                playlistId: null,
                 title:
 `███████████                              █████      █████        ███           █████                ███     ██████            
 ░█░░░███░░░█                             ░░███      ░░███        ░░░           ░░███                ░░░     ███░░███           
@@ -273,13 +274,15 @@
                 trackIds: []
             };
         },
-        created() {
-            // in-Memory token (volatile, not refresh resistant)
-            this.token = this.$route.query.token;
-            // TODO: change to cookie or Vuex
+        mounted() {
+            this.token = window.localStorage.getItem('token');
+            
+            const tokenExpiration = window.localStorage.getItem('token_expiration');
+            const isTokenExpired = (Date.now() - tokenExpiration)/ (1000 * 60 * 60) > 1;
+ 
+            if (this.token && this.token != 'undefined' && !isTokenExpired) {
+                console.log("token found!");
 
-            if (this.token != null) {
-                // 1. Get user profile data
                 this.getUserData().then((usrData) =>{
                     
                     this.userData = usrData;
@@ -295,6 +298,8 @@
                 })
             }else{
                 // if not logged in, remove eventual previous playlists ids
+                console.error("token not found!!");
+                this.token = null;
                 this.playlistId = null;
             }
         }

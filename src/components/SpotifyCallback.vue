@@ -19,8 +19,11 @@ export default {
                 });
                 const data = await response.json();
 
-                this.$router.push({ path: '/tracklistify', query: { token: data.access_token } });
+                window.localStorage.setItem('token', data.access_token);
+                window.localStorage.setItem('token_expiration', Date.now());
 
+                this.$router.push({ path: '/tracklistify'});
+            
             } catch (error) {
                 console.error('Error exchanging code for token:', error);
             }

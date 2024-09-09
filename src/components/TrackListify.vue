@@ -2,7 +2,7 @@
     <main>
         <pre class="title">{{ this.title }}</pre>
         
-        <div v-if="this.token != 'undefined'">
+        <div v-if="this.token == 'undefined'">
             <p>Ok so I made this thing to make playlists from text.</p>
             <p>Each letter in the text will be the first letter of a song's title.</p>
             <hr>

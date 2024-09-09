@@ -17,21 +17,20 @@
                 <img class="profile-img" height="32" width="32" :src="this.imgSrc">
                   {{ this.username }}.
             </div>
-            <p>bla bla bla description goes here...</p>
-            <div class="form">
-                <select v-model="this.selectedGenre">
-                    <option disabled value="">Please Select</option>
-                    <option v-for="option in this.genres" :value="option">{{option}}</option>
-                </select>
-                <input class="userInput" maxlength="100" type="text" v-on:keyup.enter="submit" v-model="this.userText" placeholder="Type anything...">
-                <button class="login-button" @click="submit">Tracklistify</button>
-            </div>
+            <p class="description">Select the genre of your playlist, type something and send it!</p>
+            <select v-model="this.selectedGenre">
+                <option value="" disabled selected>Genres</option>
+                <option v-for="option in this.genres" :value="option">{{option}}</option>
+            </select>
+            <input class="userInput" maxlength="100" type="text" v-on:keyup.enter="submit" v-model="this.userText" placeholder="Type anything...">
+            <button class="login-button" @click="submit">Tracklistify</button>
         </span>
 
         <span class="inthemiddle" v-if="this.loading">
             <h1>LOADING...</h1>
             <br>
             <img src="https://c.tenor.com/qiU8k19Bmr4AAAAj/cat-vibing-cat.gif" alt="">
+            <br>
         </span>
 
         <span class="inthemiddle" v-if="this.playlistId">
@@ -352,18 +351,21 @@
         margin: 20px;
     }
     .login-button {
-    background-color: rgb(30, 215, 96);
-    color: #000000;
-    font-size: 16px;
-    font-weight: bold;
-    padding: 14px 30px;
-    border: 0px;
-    border-radius: 40px;
-    cursor: pointer;
+        background-color: rgb(30, 215, 96);
+        color: #000000;
+        font-size: 16px;
+        font-weight: bold;
+        padding: 14px 30px;
+        border: 0px;
+        border-radius: 40px;
+        cursor: pointer;
     }
     .welcome{
         font-size: 2rem;
         justify-content: center;
+    }
+    .description{
+        font-size: 1rem;
     }
     .profile-img{
         border-radius: 40px;
@@ -396,5 +398,14 @@
     }
     .playlistlink{
         justify-content: center;
+    }
+    @media (max-width: 500px) 
+    {
+        .title{
+            font-size: 0.25rem;
+        }
+        .welcome{
+            font-size: 1.5rem;
+        }
     }
 </style>

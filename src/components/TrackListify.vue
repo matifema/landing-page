@@ -283,7 +283,7 @@
         },
         data() {
             return {
-                token: null, // the access token is stored here
+                token: 'undefined', // the access token is stored here
                 userData: null,
                 username: null,
                 imgSrc: null,
@@ -340,7 +340,6 @@
             }else{
                 // if not logged in, remove eventual previous playlists ids
                 console.error("token not found!!");
-                this.token = null;
                 this.playlistId = null;
 
                 window.localStorage.setItem('token', 'undefined');

@@ -77,7 +77,7 @@
             },
             newplaylist() {
                 this.playlistId = null;
-                //window.location.href = 'http://localhost:5173/tracklistify?token='+this.token;
+                this.loading = false;
             },
             isLoggedIn() {
                 this.token = window.localStorage.getItem('token');

@@ -313,7 +313,7 @@
             const tokenExpiration = window.localStorage.getItem('token_expiration');
             const isTokenExpired = (Date.now() - tokenExpiration)/ (1000 * 60 * 60) > 1;
  
-            if (this.token && this.token != 'undefined' && !isTokenExpired) {
+            if (this.token != null && !isTokenExpired) {
                 console.log("token found!");
 
                 this.getUserData().then((usrData) =>{
@@ -341,7 +341,7 @@
                 this.token = null;
                 this.playlistId = null;
                 
-                window.localStorage.setItem('token', null);
+                window.localStorage.setItem('token', 'undefined');
                 this.$router.push({ path: '/tracklistify'});
             }
         }

@@ -2,7 +2,7 @@
     <main>
         <pre class="title">{{ this.title }}</pre>
         
-        <div v-if="!this.token">
+        <div v-if="this.token != 'undefined'">
             <p>Ok so I made this thing to make playlists from text.</p>
             <p>Each letter in the text will be the first letter of a song's title.</p>
             <hr>
@@ -310,10 +310,12 @@
         mounted() {
             this.token = window.localStorage.getItem('token');
             
+            console.log(this.token);
+
             const tokenExpiration = window.localStorage.getItem('token_expiration');
             const isTokenExpired = (Date.now() - tokenExpiration)/ (1000 * 60 * 60) > 1;
  
-            if (this.token != null && !isTokenExpired) {
+            if (this.token != 'undefined' && !isTokenExpired) {
                 console.log("token found!");
 
                 this.getUserData().then((usrData) =>{
@@ -340,7 +342,7 @@
                 console.error("token not found!!");
                 this.token = null;
                 this.playlistId = null;
-                
+
                 window.localStorage.setItem('token', 'undefined');
                 this.$router.push({ path: '/tracklistify'});
             }

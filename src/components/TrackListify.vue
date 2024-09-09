@@ -2,7 +2,7 @@
     <main>
         <pre class="title">{{ this.title }}</pre>
         
-        <div v-if="this.token == 'undefined'">
+        <div v-if="isLoggedIn()">
             <p>Ok so I made this thing to make playlists from text.</p>
             <p>Each letter in the text will be the first letter of a song's title.</p>
             <hr>
@@ -78,6 +78,10 @@
             newplaylist() {
                 this.playlistId = null;
                 //window.location.href = 'http://localhost:5173/tracklistify?token='+this.token;
+            },
+            isLoggedIn() {
+                this.token = window.localStorage.getItem('token');
+                return this.token == 'undefined';
             },
             async getUserData() {
                 try {

@@ -340,6 +340,9 @@
                 console.error("token not found!!");
                 this.token = null;
                 this.playlistId = null;
+                
+                window.localStorage.setItem('token', null);
+                this.$router.push({ path: '/tracklistify'});
             }
         }
     }

@@ -2,7 +2,7 @@
     <main>
         <pre class="title">{{ this.title }}</pre>
         
-        <div v-if="isLoggedIn()">
+        <div v-if="!isLoggedIn()">
             <p>Ok so I made this thing to make playlists from text.</p>
             <p>Each letter in the text will be the first letter of a song's title.</p>
             <hr>
@@ -81,7 +81,7 @@
             },
             isLoggedIn() {
                 this.token = window.localStorage.getItem('token');
-                return this.token == 'undefined';
+                return this.token != 'undefined' && this.token != null;
             },
             async getUserData() {
                 try {
@@ -110,7 +110,7 @@
                     
                     return data.genres;
                 } catch (error) {
-                    console.error('Failed to get user data:', error);
+                    console.error('Failed to get genres data:', error);
                 }
             },
             async getTrack(query) { 
@@ -128,7 +128,7 @@
                     
                     return data;
                 } catch (error) {
-                    console.error('Failed to get user data:', error);
+                    console.error('Failed to get track data:', error);
                 }
             },
             async getTracksStartingWith(letter) {
@@ -317,9 +317,9 @@
             console.log(this.token);
 
             const tokenExpiration = window.localStorage.getItem('token_expiration');
-            const isTokenExpired = (Date.now() - tokenExpiration)/ (1000 * 60 * 60) > 1;
+            const hoursPassed = (Date.now() - tokenExpiration)/ (1000 * 60 * 60);
  
-            if (this.token != 'undefined' && !isTokenExpired) {
+            if (this.token != 'undefined' && hoursPassed < 1) {
                 console.log("token found!");
 
                 this.getUserData().then((usrData) =>{
@@ -344,7 +344,6 @@
             }else{
                 // if not logged in, remove eventual previous playlists ids
                 console.error("token not found!!");
-                this.playlistId = null;
 
                 window.localStorage.setItem('token', 'undefined');
                 this.$router.push({ path: '/tracklistify'});

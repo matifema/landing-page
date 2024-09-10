@@ -257,11 +257,11 @@
                     console.log('Track IDs:', this.trackIds);
 
                     // 3. Extract first 3 words of user input
-                    const first3Words = this.userText.split(' ').slice(0, 3).join(' ');
+                    const first5Words = this.userText.split(' ').slice(0, 5).join(' ');
 
                     // 4. Create a new playlist
                     console.log('Creating playlist...');
-                    const playlistResponse = await this.createPlaylist(first3Words + "...");
+                    const playlistResponse = await this.createPlaylist(first5Words + "...");
                     this.playlistId = playlistResponse.id;
 
                     if (!this.playlistId) {
@@ -319,7 +319,7 @@
             const tokenExpiration = window.localStorage.getItem('token_expiration');
             const hoursPassed = (Date.now() - tokenExpiration)/ (1000 * 60 * 60);
  
-            if (this.token != 'undefined' && hoursPassed < 1) {
+            if (this.token != 'undefined' && this.token != null && hoursPassed < 1) {
                 console.log("token found!");
 
                 this.getUserData().then((usrData) =>{

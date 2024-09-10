@@ -52,19 +52,19 @@
                 return Math.floor(Math.random() * max);
             },
             loginWithSpotify() {
-            const client_id = '4fdb1905b11d41a98f93cb2174d065f9'; //90eb9703676b439eb1481321bb9f9687 
-            const redirect_uri = 'https://matifema.com/tracklistify/callback'; //http://localhost:5173/tracklistify/callback
-            const scope = 'user-read-private user-read-email playlist-modify-public playlist-modify-private';
-            const state = this.generateRandomString(16);
+                const client_id = '4fdb1905b11d41a98f93cb2174d065f9';
+                const redirect_uri = 'https://matifema.com/tracklistify/callback';
+                const scope = 'user-read-private user-read-email playlist-modify-public playlist-modify-private';
+                const state = this.generateRandomString(16);
 
-            const authUrl = `https://accounts.spotify.com/authorize?` + 
-                            `response_type=code&` + 
-                            `client_id=${encodeURIComponent(client_id)}&` + 
-                            `scope=${encodeURIComponent(scope)}&` + 
-                            `redirect_uri=${encodeURIComponent(redirect_uri)}&` + 
-                            `state=${encodeURIComponent(state)}`;
+                const authUrl = `https://accounts.spotify.com/authorize?` + 
+                                `response_type=code&` + 
+                                `client_id=${encodeURIComponent(client_id)}&` + 
+                                `scope=${encodeURIComponent(scope)}&` + 
+                                `redirect_uri=${encodeURIComponent(redirect_uri)}&` + 
+                                `state=${encodeURIComponent(state)}`;
 
-            window.location.href = authUrl;
+                window.location.href = authUrl;
             },
             generateRandomString(length) {
                 let text = '';
@@ -92,7 +92,6 @@
                         }
                     });
                     const data = await response.json();
-                    
                     return data;
                 } catch (error) {
                     console.error('Failed to get user data:', error);
@@ -107,25 +106,22 @@
                         }
                     });
                     const data = await response.json();
-                    
                     return data.genres;
                 } catch (error) {
                     console.error('Failed to get genres data:', error);
                 }
             },
-            async getTrack(query) { 
-
-                const uri = '?q=' + query + '*&type=track&offset=' + this.randomInt(10) + '&limit=1'
+            async getTrack(query) {
+                const uri = '?q=' + query + '*&type=track&offset=' + this.randomInt(10) + '&limit=1';
 
                 try {
-                    const response = await fetch('https://api.spotify.com/v1/search' + uri , {
+                    const response = await fetch('https://api.spotify.com/v1/search' + uri, {
                         method: 'GET',
                         headers: {
                             'Authorization': 'Bearer ' + this.token,
                         }
                     });
                     const data = await response.json();
-                    
                     return data;
                 } catch (error) {
                     console.error('Failed to get track data:', error);
@@ -150,30 +146,27 @@
                         }
                     });
 
-                    // Check if the response is successful (status 200-299)
                     if (!response.ok) {
                         throw new Error(`HTTP error! Status: ${response.status}`);
                     }
 
                     const data = await response.json();
 
-                    // Filter tracks that start with the letter and are not in this.trackIds
                     const filteredTracks = data.tracks.items.filter(track => {
                         return track.name.toLowerCase().startsWith(letter.toLowerCase()) && 
-                            !this.trackIds.includes(track.id);  // Filter out tracks whose ID is in this.trackIds
+                            !this.trackIds.includes(track.id);
                     });
 
                     return filteredTracks;
                 } catch (error) {
                     console.error('Error fetching tracks:', error);
-                    return []; // Return an empty array in case of an error
+                    return [];
                 }
             },
             async getAllTracks() {
                 const chars = Array.from(this.userText.replace(/\s/g,''));
                 this.trackIds = [];
 
-                // Use `for...of` to allow `await` inside the loop
                 for (const element of chars) {
                     try {
                         const response = await this.getTracksStartingWith(element);
@@ -202,8 +195,6 @@
                         }),
                     });
                     const data = await response.json();
-
-
                     return data;
                 } catch (error) {
                     console.error('Error creating playlist:', error);
@@ -218,18 +209,16 @@
                             'Content-Type': 'application/json'
                         },
                         body: JSON.stringify({
-                            uris: this.trackIds,  // Ensure this is populated correctly
+                            uris: this.trackIds,
                             position: 0
                         })
                     });
                     const data = await response.json();
-                    
                     if (response.ok) {
                         console.log('Tracks added successfully:', data);
                     } else {
                         console.error('Error adding tracks:', data);
                     }
-                    
                     return data;
                 } catch (error) {
                     console.error('Failed to add tracks to playlist:', error);
@@ -238,46 +227,36 @@
             async submit() {
                 this.loading = true;
                 try {
-                    // 1. Ensure input text exists
                     if (this.userText.length === 0) {
-                        console.error("Input text is empty!!!");
+                        console.error("Input text is empty");
                         return;
                     }
 
-                    // 2. Get tracks based on user input
                     console.log('Fetching tracks based on user input...');
-                    const allTracks = await this.getAllTracks();
+                    await this.getAllTracks();
 
-                    // Verify that `allTracks` has data and `this.trackIds` is populated correctly
                     if (!this.trackIds || this.trackIds.length === 0) {
-                        console.error("No track IDs were found!");
+                        console.error("No track IDs were found");
                         return;
                     }
 
                     console.log('Track IDs:', this.trackIds);
 
-                    // 3. Extract first 3 words of user input
                     const first5Words = this.userText.split(' ').slice(0, 5).join(' ');
 
-                    // 4. Create a new playlist
                     console.log('Creating playlist...');
                     const playlistResponse = await this.createPlaylist(first5Words + "...");
                     this.playlistId = playlistResponse.id;
 
                     if (!this.playlistId) {
-                        console.error("Failed to create playlist!");
+                        console.error("Failed to create playlist");
                         return;
                     }
 
                     console.log('Playlist created with ID:', this.playlistId);
 
-                    // 5. Add tracks to playlist
-                    const addTracksResponse = await this.addTracksToPlaylist();
-                    console.log('Tracks added to playlist response:', addTracksResponse);
-
-                    // Handle success (optional)
-                    console.log("DONE!!!!!!!!!!");
-                    
+                    await this.addTracksToPlaylist();
+                    console.log("DONE");
                 } catch (error) {
                     console.error('An error occurred during tracklistify:', error);
                 }
@@ -287,24 +266,13 @@
         },
         data() {
             return {
-                token: 'undefined', // the access token is stored here
+                token: 'undefined',
                 userData: null,
                 username: null,
                 imgSrc: null,
                 loading: false,
                 playlistId: null,
-                title:
-`███████████                              █████      █████        ███           █████                ███     ██████            
-░█░░░███░░░█                             ░░███      ░░███        ░░░           ░░███                ░░░     ███░░███           
-░   ░███  ░  ████████   ██████    ██████  ░███ █████ ░███        ████   █████  ███████              ████   ░███ ░░░  █████ ████
-    ░███    ░░███░░███ ░░░░░███  ███░░███ ░███░░███  ░███       ░░███  ███░░  ░░░███░    ██████████░░███  ███████   ░░███ ░███ 
-    ░███     ░███ ░░░   ███████ ░███ ░░░  ░██████░   ░███        ░███ ░░█████   ░███    ░░░░░░░░░░  ░███ ░░░███░     ░███ ░███ 
-    ░███     ░███      ███░░███ ░███  ███ ░███░░███  ░███      █ ░███  ░░░░███  ░███ ███            ░███   ░███      ░███ ░███ 
-    █████    █████    ░░████████░░██████  ████ █████ ███████████ █████ ██████   ░░█████             █████  █████     ░░███████ 
-   ░░░░░    ░░░░░      ░░░░░░░░  ░░░░░░  ░░░░ ░░░░░ ░░░░░░░░░░░ ░░░░░ ░░░░░░     ░░░░░             ░░░░░  ░░░░░       ░░░░░███ 
-                                                                                                                      ███ ░███ 
-                                                                                                                     ░░██████  
-                                                                                                                      ░░░░░░`,
+                title: `███████████ █████ ... `,
                 userText: "",
                 trackIds: [],
                 genres: [],
@@ -313,45 +281,36 @@
         },
         mounted() {
             this.token = window.localStorage.getItem('token');
-            
-            console.log(this.token);
+            console.log('Token:', this.token);
 
             const tokenExpiration = window.localStorage.getItem('token_expiration');
-            const hoursPassed = (Date.now() - tokenExpiration)/ (1000 * 60 * 60);
- 
-            if (this.token != 'undefined' && this.token != null && hoursPassed < 1) {
-                console.log("token found!");
+            const hoursPassed = (Date.now() - tokenExpiration) / (1000 * 60 * 60);
 
-                this.getUserData().then((usrData) =>{
-                    
+            if (this.token !== 'undefined' && this.token !== null && hoursPassed < 1) {
+                console.log("Token found!");
+
+                this.getUserData().then((usrData) => {
+                    console.log('User data:', usrData);
                     this.userData = usrData;
-                    this.username = usrData.display_name;
+                    this.username = usrData.display_name || "hotdog <3";
 
-                    if (this.username == "nadiafleur") {
-                        this.username = "hotdog <3"
-                    }
-                    
                     if (usrData.images.length > 0) {
                         this.imgSrc = usrData.images[0].url;
                     }
-                })
+                });
 
-
-                this.getUserGenres().then((genres) =>{
+                this.getUserGenres().then((genres) => {
+                    console.log('Genres:', genres);
                     this.genres = genres;
-                })
-
-            }else{
-                // if not logged in, remove eventual previous playlists ids
-                console.error("token not found!!");
-
+                });
+            } else {
+                console.error("Token not found or expired");
                 window.localStorage.setItem('token', 'undefined');
-                this.$router.push({ path: '/tracklistify'});
+                this.$router.push({ path: '/tracklistify' });
             }
         }
     }
 </script>
-
 <style scoped>
     .userInput{
         font-size: 1rem;

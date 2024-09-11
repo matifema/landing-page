@@ -52,8 +52,8 @@
                 return Math.floor(Math.random() * max);
             },
             loginWithSpotify() {
-                const client_id = '4fdb1905b11d41a98f93cb2174d065f9';
-                const redirect_uri = 'https://matifema.com/tracklistify/callback';
+                const client_id = '90eb9703676b439eb1481321bb9f9687'; //4fdb1905b11d41a98f93cb2174d065f9 
+                const redirect_uri = 'http://localhost:5173/tracklistify/callback'; // https://matifema.com/tracklistify/callback
                 const scope = 'user-read-private user-read-email playlist-modify-public playlist-modify-private';
                 const state = this.generateRandomString(16);
 
@@ -80,15 +80,28 @@
                 this.loading = false;
             },
             isLoggedIn() {
-                this.token = window.localStorage.getItem('token');
-                return this.token != 'undefined' && this.token != null;
+                const token = this.getCookie('spotify_token');
+                return token !== undefined && token !== null;
+            },
+            getCookie(name) {
+                const value = `; ${document.cookie}`;
+                const parts = value.split(`; ${name}=`);
+                if (parts.length === 2) return parts.pop().split(';').shift();
+            },
+            deleteCookie(name) {
+                document.cookie = name + '=; Max-Age=-99999999; path=/';
             },
             async getUserData() {
                 try {
+                    const token = this.getCookie('spotify_token');
+                    if (!token) {
+                        console.error('No token found in cookies.');
+                        return;
+                    }
                     const response = await fetch('https://api.spotify.com/v1/me', {
                         method: 'GET',
                         headers: {
-                            'Authorization': 'Bearer ' + this.token,
+                            'Authorization': 'Bearer ' + token,
                         }
                     });
                     const data = await response.json();
@@ -99,10 +112,15 @@
             },
             async getUserGenres() {
                 try {
+                    const token = this.getCookie('spotify_token');
+                    if (!token) {
+                        console.error('No token found in cookies.');
+                        return;
+                    }
                     const response = await fetch('https://api.spotify.com/v1/recommendations/available-genre-seeds', {
                         method: 'GET',
                         headers: {
-                            'Authorization': 'Bearer ' + this.token,
+                            'Authorization': 'Bearer ' + token,
                         }
                     });
                     const data = await response.json();
@@ -115,10 +133,15 @@
                 const uri = '?q=' + query + '*&type=track&offset=' + this.randomInt(10) + '&limit=1';
 
                 try {
+                    const token = this.getCookie('spotify_token');
+                    if (!token) {
+                        console.error('No token found in cookies.');
+                        return;
+                    }
                     const response = await fetch('https://api.spotify.com/v1/search' + uri, {
                         method: 'GET',
                         headers: {
-                            'Authorization': 'Bearer ' + this.token,
+                            'Authorization': 'Bearer ' + token,
                         }
                     });
                     const data = await response.json();
@@ -138,10 +161,15 @@
                 const url = `https://api.spotify.com/v1/search?q=${encodeURIComponent(query)}&type=track&limit=${limit}`;
 
                 try {
+                    const token = this.getCookie('spotify_token');
+                    if (!token) {
+                        console.error('No token found in cookies.');
+                        return;
+                    }
                     const response = await fetch(url, {
                         method: 'GET',
                         headers: {
-                            'Authorization': `Bearer ${this.token}`,
+                            'Authorization': `Bearer `+ token,
                             'Content-Type': 'application/json'
                         }
                     });
@@ -167,6 +195,11 @@
                 const chars = Array.from(this.userText.replace(/\s/g,''));
                 this.trackIds = [];
 
+                const token = this.getCookie('spotify_token');
+                if (!token) {
+                    console.error('No token found in cookies.');
+                    return;
+                }
                 for (const element of chars) {
                     try {
                         const response = await this.getTracksStartingWith(element);
@@ -182,10 +215,15 @@
             },
             async createPlaylist(name) {
                 try {
+                    const token = this.getCookie('spotify_token');
+                    if (!token) {
+                        console.error('No token found in cookies.');
+                        return;
+                    }
                     const response = await fetch('https://api.spotify.com/v1/users/' + this.userData.id + '/playlists', {
                         method: 'POST',
                         headers: {
-                            'Authorization': 'Bearer ' + this.token,
+                            'Authorization': 'Bearer ' + token,
                             'Content-Type': 'application/json',
                         },
                         body: JSON.stringify({
@@ -202,10 +240,15 @@
             },
             async addTracksToPlaylist() {
                 try {
+                    const token = this.getCookie('spotify_token');
+                    if (!token) {
+                        console.error('No token found in cookies.');
+                        return;
+                    }
                     const response = await fetch('https://api.spotify.com/v1/playlists/' + this.playlistId + '/tracks', {
                         method: 'POST',
                         headers: {
-                            'Authorization': 'Bearer ' + this.token,
+                            'Authorization': 'Bearer ' + token,
                             'Content-Type': 'application/json'
                         },
                         body: JSON.stringify({
@@ -266,13 +309,23 @@
         },
         data() {
             return {
-                token: 'undefined',
                 userData: null,
                 username: null,
                 imgSrc: null,
                 loading: false,
                 playlistId: null,
-                title: `███████████ █████ ... `,
+                title:
+`███████████                              █████      █████        ███           █████                ███     ██████            
+░█░░░███░░░█                             ░░███      ░░███        ░░░           ░░███                ░░░     ███░░███           
+░   ░███  ░  ████████   ██████    ██████  ░███ █████ ░███        ████   █████  ███████              ████   ░███ ░░░  █████ ████
+    ░███    ░░███░░███ ░░░░░███  ███░░███ ░███░░███  ░███       ░░███  ███░░  ░░░███░    ██████████░░███  ███████   ░░███ ░███ 
+    ░███     ░███ ░░░   ███████ ░███ ░░░  ░██████░   ░███        ░███ ░░█████   ░███    ░░░░░░░░░░  ░███ ░░░███░     ░███ ░███ 
+    ░███     ░███      ███░░███ ░███  ███ ░███░░███  ░███      █ ░███  ░░░░███  ░███ ███            ░███   ░███      ░███ ░███ 
+    █████    █████    ░░████████░░██████  ████ █████ ███████████ █████ ██████   ░░█████             █████  █████     ░░███████ 
+   ░░░░░    ░░░░░      ░░░░░░░░  ░░░░░░  ░░░░ ░░░░░ ░░░░░░░░░░░ ░░░░░ ░░░░░░     ░░░░░             ░░░░░  ░░░░░       ░░░░░███ 
+                                                                                                                      ███ ░███ 
+                                                                                                                     ░░██████  
+                                                                                                                      ░░░░░░`,
                 userText: "",
                 trackIds: [],
                 genres: [],
@@ -280,19 +333,19 @@
             };
         },
         mounted() {
-            this.token = window.localStorage.getItem('token');
-            console.log('Token:', this.token);
+            const token = this.getCookie('spotify_token');
 
-            const tokenExpiration = window.localStorage.getItem('token_expiration');
-            const hoursPassed = (Date.now() - tokenExpiration) / (1000 * 60 * 60);
-
-            if (this.token !== 'undefined' && this.token !== null && hoursPassed < 1) {
-                console.log("Token found!");
+            if (token) {
+                console.log("Token found in cookies!");
 
                 this.getUserData().then((usrData) => {
-                    console.log('User data:', usrData);
                     this.userData = usrData;
-                    this.username = usrData.display_name || "hotdog <3";
+
+                    if (usrData.display_name == "nadiafleur"){
+                        this.username = "hotdog <3";
+                    }else{
+                        this.username = usrData.display_name;
+                    }
 
                     if (usrData.images.length > 0) {
                         this.imgSrc = usrData.images[0].url;
@@ -300,12 +353,11 @@
                 });
 
                 this.getUserGenres().then((genres) => {
-                    console.log('Genres:', genres);
                     this.genres = genres;
                 });
+
             } else {
-                console.error("Token not found or expired");
-                window.localStorage.setItem('token', 'undefined');
+                console.error("Token not found in cookies!");
                 this.$router.push({ path: '/tracklistify' });
             }
         }

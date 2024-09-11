@@ -19,14 +19,23 @@ export default {
                 });
                 const data = await response.json();
 
-                window.localStorage.setItem('token', data.access_token);
-                window.localStorage.setItem('token_expiration', Date.now());
+                this.setCookie(data.access_token);
 
                 this.$router.push({ path: '/tracklistify'});
             
             } catch (error) {
                 console.error('Error exchanging code for token:', error);
             }
+        },
+        setCookie(value) {
+            let expires = "";
+
+            const date = new Date();
+            date.setTime(date.getTime() + 3600 * 1000);
+            expires = "; expires=" + date.toUTCString();
+
+            document.cookie = "spotify_token" + "=" + (value || "") + expires + "; path=/; SameSite=Lax; Secure";
+            console.log("Cookie has been set");
         }
     },
     created() {

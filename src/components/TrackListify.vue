@@ -52,8 +52,8 @@
                 return Math.floor(Math.random() * max);
             },
             loginWithSpotify() {
-                const client_id = '90eb9703676b439eb1481321bb9f9687'; //4fdb1905b11d41a98f93cb2174d065f9 
-                const redirect_uri = 'http://localhost:5173/tracklistify/callback'; // https://matifema.com/tracklistify/callback
+                const client_id = '4fdb1905b11d41a98f93cb2174d065f9'; // 90eb9703676b439eb1481321bb9f9687
+                const redirect_uri = 'https://matifema.com/tracklistify/callback'; // http://localhost:5173/tracklistify/callback
                 const scope = 'user-read-private user-read-email playlist-modify-public playlist-modify-private';
                 const state = this.generateRandomString(16);
 

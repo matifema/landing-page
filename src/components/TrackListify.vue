@@ -37,7 +37,7 @@
             <h2>Here you go!</h2>
             <div class="playlistlink">
                 <img style="vertical-align: middle;" height="150px" src="https://i.imgur.com/YCd4zBq.png">
-                <a style="color:rgb(30, 215, 96) ;" :href="'https://open.spotify.com/playlist/'+this.playlistId">https://open.spotify.com/playlist/...</a>
+                <a style="color:rgb(30, 215, 96) ;" :href="'https://open.spotify.com/playlist/'+this.playlistId" target="_blank">https://open.spotify.com/playlist/...</a>
             </div>
         </span>
         

@@ -4,7 +4,7 @@
       cool websites
     </h2>
     <p class="text">
-      interesting endpoints to anywhere
+      over 3000 endpoints to anywhere
     </p>
     <hr />
     <button
@@ -15,12 +15,13 @@
       load em up
     </button>
     <button
-      v-if="!showList && !loading"
+      v-if="!loading"
       @click="goToRandomPage"
       class="load-button"
     >
       visit random
     </button>
+    <br>
     <p v-if="error" class="error-text">{{ error }}</p>
     <div v-if="showList" class="linkslist">
       <a
@@ -33,7 +34,6 @@
       >
         <div class="card">
           <h3>{{ entry.title }}</h3>
-          <span>{{ entry.description }}</span>
         </div>
       </a>
       <button
@@ -99,7 +99,8 @@ export default {
       }
       const randomIndex = Math.floor(Math.random() * this.entries.length);
       const randomPage = this.entries[randomIndex];
-      window.location.href = randomPage.link;
+
+      window.open(randomPage.link, '_blank').focus();
     }
   },
   async created() {
@@ -153,7 +154,6 @@ button{
 .entry-link {
   text-decoration: none;
   color: var(--text-color, #333);
-  margin-bottom: 1rem;
 }
 
 .entry-link:hover {

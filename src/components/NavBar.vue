@@ -3,8 +3,8 @@
     <RouterLink to="/" class="nav-link">MATIFEMA</RouterLink>
     <RouterLink to="/links" class="nav-link">links</RouterLink>
     <RouterLink to="/projects" class="nav-link">projects</RouterLink>
-    <!--<RouterLink to="/guestbook" class="nav-link">/guestbook</RouterLink>-->
     <RouterLink to="/about" class="nav-link">about</RouterLink>
+    <!--<RouterLink to="/guestbook" class="nav-link">/guestbook</RouterLink>-->
   </nav>
 </template>
 
@@ -19,11 +19,11 @@ export default {
 
 <style scoped>
 @font-face {
-  font-family: "BubbleFont";
+  font-family: "AudioNugget";
   src: url("src/assets/fonts/AudioNugget.ttf") format("truetype");
 }
 .side-nav {
-  font-family: BubbleFont;
+  font-family: AudioNugget;
   position: fixed;
   top: 10%;
   left: 0;

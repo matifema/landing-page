@@ -20,7 +20,7 @@ export default {
 <style scoped>
 @font-face {
   font-family: "AudioNugget";
-  src: url("src/assets/fonts/audionugget-webfont.woff") format("truetype");
+  src: url("src/assets/fonts/audionugget-webfont.woff");
 }
 .side-nav {
   font-family: AudioNugget;

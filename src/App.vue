@@ -1,31 +1,29 @@
 <script setup>
-import { RouterView } from 'vue-router'
-import NavBar from '../src/components/NavBar.vue'
-
+import { RouterView } from "vue-router";
+import NavBar from "../src/components/NavBar.vue";
+import Header from "./components/Header.vue";
+import Footer from "./components/Footer.vue";
 </script>
 
 <template>
-  <header style="margin-top: 10px;">
-    <NavBar/>
-  </header>
-
+  <Header></Header>
   <main class="page-container">
+    
+    <NavBar></NavBar>
     <router-view v-slot="{ Component }">
       <transition mode="out-in">
         <component :is="Component" />
       </transition>
     </router-view>
+
   </main>
+  <Footer></Footer>
 </template>
 
 <style scoped>
 .page-container {
-  margin-top: 10%;
-  max-width:  80%;
-}
-@media(min-width: 800px){
-  .page-container {
-    max-width: 80%;
-  }
+  padding-left: 100px;
+  padding-top: 15%;
+  padding-bottom: 15%;
 }
 </style>

@@ -1,81 +1,64 @@
+<template>
+  <nav class="side-nav">
+    <RouterLink to="/" class="nav-link">MATIFEMA</RouterLink>
+    <RouterLink to="/links" class="nav-link">links</RouterLink>
+    <RouterLink to="/projects" class="nav-link">projects</RouterLink>
+    <!--<RouterLink to="/guestbook" class="nav-link">/guestbook</RouterLink>-->
+    <RouterLink to="/about" class="nav-link">about</RouterLink>
+  </nav>
+</template>
+
 <script>
-import { RouterLink } from 'vue-router'
+import { RouterLink } from "vue-router";
+
 
 export default {
-  name: 'NavBar'
+  name: "SideNav",
 };
 </script>
 
-<template>
-  <main>
-    <h1>
-      <RouterLink class="title" to="/">MaTiFeMa</RouterLink>
-    </h1>
-
-    <nav>
-      <RouterLink to="/links">/links</RouterLink>
-      <RouterLink to="/projects">/projects</RouterLink>
-      <!--<RouterLink to="/guestbook">/guestbook</RouterLink>-->
-      <RouterLink to="/about">/about</RouterLink>
-    </nav>
-    <hr>
-  </main>
-</template>
-
 <style scoped>
-.title {
-  color: var(--accent);
-  font-weight: 800;
-  font-size: 3rem;
+@font-face {
+  font-family: "BubbleFont";
+  src: url("src/assets/fonts/AudioNugget.ttf") format("truetype");
 }
-nav {
-  width: 100%;
-  display: inline-block;
-  margin: 0;
-}
-nav a:first-of-type {
-  border: 0;
-}
-nav a.router-link-exact-active {
-  color: var(--color-text);
-}
-nav a.router-link-exact-active:hover {
-  background-color: transparent;
-}
-nav a{
-  color: var(--accent);
-  justify-items: center;
-  padding: 0 1rem;
-  border-left: 1px solid var(--color-border);
-  font-size: 0.8em;
+.side-nav {
+  font-family: BubbleFont;
+  position: fixed;
+  top: 10%;
+  left: 0;
+  width: 200px;
+  height: 25vh;
+  display: flex;
+  flex-direction: column;
+  padding: 0.5rem 0;
+  z-index: 1000;
 }
 
-@media (min-width: 600px) {
-  hr{
-    display: none;
+.nav-link {
+  text-decoration: none;
+  color: var(--accent, #ffffff); /* Replace with your CSS variable or fallback */
+  padding: 0.5rem;
+  font-size: 4rem;
+}
+
+.nav-link.router-link-exact-active {
+  color: var(--color-text, #ff0000); /* Active text color */
+}
+
+.nav-link:hover {
+  background-color: var(--hover-background, #5e000058); /* Hover effect */
+  color: var(--hover-color, #fff); /* Hover text color */
+}
+
+@media (max-width: 768px) {
+  .side-nav {
+    width: fit-content;
   }
-  .title {
-    float: left;
-  }
-  nav {
-    display: inline-block;
-    margin: auto;
-  }
-  nav a:first-of-type {
-    border: 0;
-  }
-  nav a.router-link-exact-active {
-    color: var(--color-text);
-  }
-  nav a.router-link-exact-active:hover {
-    background-color: transparent;
-  }
-  nav a{
-    color: var(--accent);
-    justify-items: center;
-    padding: 0 1rem;
-    border-left: 1px solid var(--color-border);
-    font-size: 1.2rem;
+
+  .nav-link {
+    font-size: 0.9rem;
+    padding: 0.8rem;
   }
 }
 </style>

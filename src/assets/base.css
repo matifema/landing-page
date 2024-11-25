@@ -1,15 +1,14 @@
 :root {
-  --accent: #748CAB;
-  --dark: #0D1321;
-  --soft-dark: #1e2023;
-  --text: #F0EBD8;
-  --color-text: var(--text);
+  --accent: #ff0000;
+  --dark: #000000;
+  --soft-dark: #000000;
+  --text: #000000;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --soft-dark: #1e2023;
-    --color-text: #F0EBD8;
+    --soft-dark: #0f0f0f;
+    --color-text: #7b7b7b;
   }
 }
 
@@ -25,13 +24,14 @@ html, body {
   width: 100%;
 }
 body {
+  font-family: "CustomFont";
+  src: url("@/assets/fonts/NeuePixelSans.ttf") format("truetype");
   color: var(--color-text);
   background: var(--soft-dark);
   transition:
     color 0.5s,
     background-color 0.5s;
   line-height: 1.6;
-  font-family: monospace;
   font-size: 1.2rem;
   text-rendering: optimizeLegibility;
 }

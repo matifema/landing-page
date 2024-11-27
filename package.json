@@ -8,14 +8,21 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "body-parser": "^1.20.3",
+    "cookie": "^0.7.0",
+    "express": "^4.20.0",
     "file-saver": "^2.0.5",
     "lodash": "^4.17.15",
+    "path-to-regexp": "^0.1.10",
+    "rollup": "^4.22.4",
+    "send": "^0.19.0",
+    "serve-static": "^1.16.0",
     "vue": "^3.3.11",
     "vue-router": "^4.2.5"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^4.5.2",
-    "vite": "^5.0.10",
+    "vite": "^5.1.8",
     "vue-cli-plugin-lodash": "~0.1.4"
   },
   "type": "module"

@@ -22,7 +22,7 @@ import Footer from "./components/Footer.vue";
 
 <style scoped>
 .page-container {
-  padding-left: 100px;
+  padding-left: 10%;
   padding-top: 15%;
   padding-bottom: 15%;
 }

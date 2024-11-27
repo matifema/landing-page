@@ -1,9 +1,16 @@
 <template>
   <nav class="side-nav">
-    <RouterLink to="/" class="nav-link">MATIFEMA</RouterLink>
-    <RouterLink to="/links" class="nav-link">links</RouterLink>
-    <RouterLink to="/projects" class="nav-link">projects</RouterLink>
-    <RouterLink to="/about" class="nav-link">about</RouterLink>
+    <button 
+      @click="hideMenu"
+      class="show-button"
+    >
+    /menu
+    </button>
+    
+    <RouterLink @click="hideMenu" v-if="isOpen" to="/" class="nav-link">MATIFEMA</RouterLink>
+    <RouterLink @click="hideMenu" v-if="isOpen" to="/links" class="nav-link">links</RouterLink>
+    <RouterLink @click="hideMenu" v-if="isOpen" to="/projects" class="nav-link">projects</RouterLink>
+    <RouterLink @click="hideMenu" v-if="isOpen" to="/about" class="nav-link">about</RouterLink>
     <!--<RouterLink to="/guestbook" class="nav-link">/guestbook</RouterLink>-->
   </nav>
 </template>
@@ -11,9 +18,25 @@
 <script>
 import { RouterLink } from "vue-router";
 
-
 export default {
   name: "SideNav",
+  data() {
+    return {
+      isOpen: false, // Initial navigation bar state
+    };
+  },
+  methods: {
+    hideMenu() {
+      if (window.screen.width < 800){
+        this.isOpen = !this.isOpen;
+      }
+    },
+  },
+  beforeMount() {
+    if (window.screen.width > 800){
+      this.isOpen = true
+    }
+  },
 };
 </script>
 
@@ -22,7 +45,15 @@ export default {
   font-family: "AudioNugget";
   src: url("src/assets/fonts/audionugget-webfont.woff") format("woff");
 }
+
+.show-button {
+  display: none;
+  background-color: var(--accent);
+  border: none;
+  border-radius: 2px;
+}
 .side-nav {
+  background-color: transparent;
   font-family: AudioNugget;
   position: fixed;
   top: 10%;
@@ -37,7 +68,10 @@ export default {
 
 .nav-link {
   text-decoration: none;
-  color: var(--accent, #ffffff); /* Replace with your CSS variable or fallback */
+  color: var(
+    --accent,
+    #ffffff
+  ); /* Replace with your CSS variable or fallback */
   padding: 0.5rem;
   font-size: 4rem;
 }
@@ -51,14 +85,18 @@ export default {
   color: var(--hover-color, #fff); /* Hover text color */
 }
 
-@media (max-width: 768px) {
+@media screen and (max-width: 800px) {
   .side-nav {
     width: fit-content;
+    border-radius: 30px;
   }
 
   .nav-link {
     font-size: 0.9rem;
     padding: 0.8rem;
+  }
+  .show-button {
+    display: unset;
   }
 }
 </style>

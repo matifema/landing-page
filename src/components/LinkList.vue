@@ -1,11 +1,7 @@
 <template>
   <main>
-    <h2 class="title">
-      cool websites
-    </h2>
-    <p class="text">
-      over 3000 endpoints to anywhere
-    </p>
+    <h2 class="title">cool websites</h2>
+    <p class="text">my collection of over 3000 endpoints to anywhere</p>
     <hr />
     <button
       v-if="!showList && !loading"
@@ -14,14 +10,10 @@
     >
       load em up
     </button>
-    <button
-      v-if="!loading"
-      @click="goToRandomPage"
-      class="load-button"
-    >
+    <button v-if="!loading" @click="goToRandomPage" class="load-button">
       visit random
     </button>
-    <br>
+    <br />
     <p v-if="error" class="error-text">{{ error }}</p>
     <div v-if="showList" class="linkslist">
       <a
@@ -100,8 +92,8 @@ export default {
       const randomIndex = Math.floor(Math.random() * this.entries.length);
       const randomPage = this.entries[randomIndex];
 
-      window.open(randomPage.link, '_blank').focus();
-    }
+      window.open(randomPage.link, "_blank").focus();
+    },
   },
   async created() {
     await this.fetchEntriesFromJSON();
@@ -114,10 +106,10 @@ export default {
   font-family: "CustomFont";
   src: url("@/assets/fonts/NeuePixelSans.ttf") format("truetype");
 }
-.title{
-  color:var(--accent)
+.title {
+  color: var(--accent);
 }
-button{
+button {
   font-family: CustomFont;
 }
 .load-button,

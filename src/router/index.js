@@ -43,6 +43,10 @@ const router = createRouter({
       component: () => import('../components/SpotifyCallback.vue')
     },
     {
+      path: '/links/addlinks',
+      component: () => import('../views/AddLinkView.vue')
+    },
+    {
       path: "/:pathMatch(.*)*",
       name: "NotFound",
       component: () => import('../components/NotFound.vue')

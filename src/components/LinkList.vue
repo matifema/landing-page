@@ -43,12 +43,12 @@
 export default {
   data() {
     return {
-      entries: [], // All entries
-      visibleEntries: [], // Entries currently displayed
-      loading: false, // Initial loading state
-      error: null, // Error message
-      showList: false, // Whether the list is visible
-      loadAmount: 50, // Number of entries to load at once
+      entries: [],
+      visibleEntries: [],
+      loading: false,
+      error: null,
+      showList: false,
+      loadAmount: 50,
     };
   },
   computed: {

@@ -1,38 +1,37 @@
 <template class="mobileText">
   <main>
-    <p class="title">
-      unfinished projects
-    </p>
-    <p class="text">
-      hmmmm idk honestly
-    </p>
+    <p class="title">unfinished projects</p>
+    <p class="text">hmmmm idk honestly</p>
     <hr />
-    <td class="text ">
-      <tr>
-        <RouterLink to="/tracklistify">- tracklistify</RouterLink>
+    <table class="text">
+      <thead></thead>
+      <tbody>
+        <tr>
+        <td><RouterLink to="/tracklistify">- tracklistify</RouterLink></td>
       </tr>
       <tr>
-        <RouterLink to="/gameoflife">- conway's game of life</RouterLink>
+        <td><RouterLink to="/gameoflife">- conway's game of life</RouterLink></td>
       </tr>
       <tr>
-        <a href="https://github.com/matifema/tinyChessBot">- octoBot</a>
+        <td><a href="https://github.com/matifema/tinyChessBot">- octoBot</a></td>
       </tr>
       <tr>
-        <a href="https://github.com/matifema/Jbomber">- JBomber</a>
+        <td><a href="https://github.com/matifema/Jbomber">- JBomber</a></td>
       </tr>
       <tr>
-        <a href="https://github.com/matifema/GimmiePass">- GimmiePass</a>
+        <td><a href="https://github.com/matifema/GimmiePass">- GimmiePass</a></td>
       </tr>
-    </td>
+      </tbody>
+    </table>
   </main>
 </template>
 
 <style scoped>
-.title{
-    text-align: left;
-    color: var(--accent);
+.title {
+  text-align: left;
+  color: var(--accent);
 }
-.text tr{
+.text tr {
   text-align: center;
   margin-bottom: 1rem;
   color: var(--text-color, #333);

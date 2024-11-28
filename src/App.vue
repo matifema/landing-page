@@ -63,7 +63,7 @@ onUnmounted(() => {
 }
 .cursor-tracker {
   font-family: Arial, sans-serif;
-  padding-top: 3%;
+  padding-top: 60px;
   float: left;
 }
 @media screen and (max-width: 800px) {

@@ -6,7 +6,7 @@
     >
     MENU
     </button>
-    
+
     <RouterLink @click="hideMenu" v-if="isOpen" to="/" class="nav-link">MATIFEMA</RouterLink>
     <RouterLink @click="hideMenu" v-if="isOpen" to="/links" class="nav-link">links</RouterLink>
     <RouterLink @click="hideMenu" v-if="isOpen" to="/projects" class="nav-link">projects</RouterLink>
@@ -63,6 +63,7 @@ export default {
   display: none;
   border: none;
 }
+
 .side-nav {
   background-color: transparent;
   font-family: "AudioNugget";
@@ -94,16 +95,22 @@ export default {
 
 @media screen and (max-width: 800px) {
   .side-nav {
+    background-color: rgba(0, 0, 0, 0.661);
+    align-items: unset;
     width: fit-content;
-    border-radius: 30px;
+    height: fit-content;
   }
 
   .nav-link {
-    font-size: 0.9rem;
+    font-size: 2rem;
     padding: 0.8rem;
   }
   .show-button {
+    font-family: "CustomFont";
+    justify-self: center;
+    font-size: 1.5rem;
     display: unset;
+    top: 0;
   }
 }
 </style>

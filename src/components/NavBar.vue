@@ -43,7 +43,9 @@ export default {
 <style scoped>
 @font-face {
   font-family: "AudioNugget";
-  src: url("src/assets/fonts/audionugget-webfont.woff") format("woff");
+  src: url("src/assets/fonts/AudioNugget.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
 }
 
 .show-button {

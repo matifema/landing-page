@@ -48,9 +48,9 @@ export default {
 
 <style scoped>
 @font-face {
-  src: url("src/assets/fonts/AudioNugget.ttf") format("truetype"),
-    url("src/assets/fonts/audionugget.woff") format("woff"),
-    url("src/assets/fonts/audionugget.woff2") format("woff2");
+  src: url("~@/assets/fonts/AudioNugget.ttf") format("truetype"),
+    url("~@/assets/fonts/audionugget.woff") format("woff"),
+    url("~@/assets/fonts/audionugget.woff2") format("woff2");
 
   font-family: "AudioNugget";
   font-weight: normal;

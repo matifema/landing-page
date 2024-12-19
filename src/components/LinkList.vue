@@ -25,7 +25,8 @@
         class="entry-link"
       >
         <div class="card">
-          <h3>{{ entry.title }}</h3>
+          <h3 style="color:var(--accent)">{{ entry.link }}</h3>
+          <p>{{ entry.description }}</p>
         </div>
       </a>
       <button
@@ -148,10 +149,6 @@ button {
   color: var(--text-color, #333);
 }
 
-.entry-link:hover {
-  background-color: rgba(0, 123, 255, 0.1);
-}
-
 .card {
   padding: 1rem;
   border: 1px solid rgba(0, 0, 0, 0.2);
@@ -162,6 +159,9 @@ button {
 }
 
 .card:hover {
-  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 3px 6px rgba(177, 10, 10, 0.2);
+}
+a:hover {
+  background-color: transparent;
 }
 </style>

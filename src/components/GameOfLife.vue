@@ -1,5 +1,33 @@
 <script setup>
-import { ref, onMounted, computed } from 'vue';
+import { ref, onMounted, watch } from 'vue';
+
+// Props for controlling the component
+const props = defineProps({
+  showControls: {
+    type: Boolean,
+    default: true,
+  },
+  initialState: {
+    type: String,
+    default: null,
+  },
+  paneHeight: {
+    type: String,
+    default: '600px',
+  },
+  paneWidth: {
+    type: String,
+    default: '600px',
+  },
+  autoStart: {
+    type: Boolean,
+    default: false,
+  },
+  speedPercentage: {
+    type: Number,
+    default: 100, // Default to normal speed
+  },
+});
 
 const tiles = ref([]);
 const numRows = ref(0);
@@ -8,180 +36,223 @@ const intervalDuration = ref(950);
 const isRunning = ref(false);
 const info = ref(false);
 
+// On mount, calculate the grid and generate tiles
 onMounted(() => {
   calculateGrid();
-  generateTiles();
-  randomizeTiles();
+  if (props.initialState) {
+    loadStateFromString(props.initialState);
+  } else {
+    generateTiles();
+    randomizeTiles();
+  }
+
+  if (props.autoStart) {
+    start();
+  }
 });
 
-window.addEventListener('resize', () => {
-  calculateGrid();
-  generateTiles();
-});
+// Watch for pane size changes
+watch([() => props.paneHeight, () => props.paneWidth], calculateGrid);
 
-function showinfo(){
+// Calculate grid based on pane dimensions
+function calculateGrid() {
+  const tileWidth = 32; // 30px tile + 2px gap
+  numCols.value = Math.floor(parseInt(props.paneWidth) / tileWidth);
+  numRows.value = Math.floor(parseInt(props.paneHeight) / tileWidth);
+  generateTiles();
+}
+
+// Generate empty grid
+function generateTiles() {
+  tiles.value = Array.from({ length: numRows.value * numCols.value }, () => ({ alive: false }));
+}
+
+// Toggle tile state
+function toggleTile(tile) {
+  tile.alive = !tile.alive;
+}
+
+// Randomize tiles
+function randomizeTiles() {
+  tiles.value = tiles.value.map(() => ({ alive: Math.random() < 0.3 }));
+}
+
+// Save the current grid state
+function saveState() {
+  const stateString = tiles.value.map(tile => (tile.alive ? '1' : '0')).join(',');
+  alert(`Saved State:\n\n${stateString}`);
+}
+
+// Load state from a string
+function loadStateFromString(stateString) {
+  const states = stateString.split(',').map(s => s === '1');
+  tiles.value = states.map(alive => ({ alive }));
+}
+
+// Show input prompt for loading a state
+function loadState() {
+  const stateString = prompt('Enter the grid state (comma-separated 1s and 0s):');
+  if (stateString) {
+    loadStateFromString(stateString);
+  }
+}
+
+function showinfo() {
   info.value = !info.value;
 }
 
-function calculateGrid() {
-  const tileWidth = 30 + 2; // width of a tile in pixels + margin
-  numCols.value = Math.floor(window.innerWidth / tileWidth);
-  numRows.value = Math.floor(window.innerHeight / tileWidth);
-}
-
-function generateTiles() {
-  tiles.value = [];
-  for (let i = 0; i < numRows.value * numCols.value; i++) {
-    tiles.value.push({ alive: false });
-  }
-}
-
-function toggleTile(tile) {
-  tile.alive = !tile.alive;
-  getNeighbours(tiles.value.indexOf(tile))
-}
-
-function getNeighbours(tileIndex) {
-  var neighbors = 0;
-  const directions = [
-    -1, 1, // left, right
-    -numCols.value, +numCols.value, // above, below
-    -numCols.value - 1, -numCols.value + 1, // top-left, top-right
-    +numCols.value - 1, +numCols.value + 1 // bottom-left, bottom-right
-  ];
-
-  directions.forEach(direction => {
-    const neighborIndex = tileIndex + direction;
-    if (neighborIndex >= 0 && neighborIndex < numRows.value * numCols.value) {
-      const neighborCol = neighborIndex % numCols.value;
-      const tileCol = tileIndex % numCols.value;
-      if (Math.abs(neighborCol - tileCol) <= 1 && tiles.value[neighborIndex].alive) {
-        neighbors += 1;
-      }
-    }
-  });
-  return neighbors;
-}
-
-function randomizeTiles() {
-  tiles.value = tiles.value.map(() => {
-    return { alive: Math.random() < 0.3 }; // 30% chance of being alive
-  });
-}
-
-function runGameCycle() {
-  if (!isRunning.value) {
-    return;
-  }
-
-  const nextState = tiles.value.map(tile => ({ ...tile }));
-
-  tiles.value.forEach((tile, index) => {
-    const aliveNeighbors = getNeighbours(index);
-    const isAlive = tile.alive;
-
-    if (isAlive && (aliveNeighbors < 2 || aliveNeighbors > 3)) {
-      nextState[index].alive = false; // die of underpopulation or overpopulation
-    } else if (!isAlive && aliveNeighbors === 3) {
-      nextState[index].alive = true; // birth condition
-    }
-  });
-
-  tiles.value = nextState;
-
-  setTimeout(runGameCycle, 1000-intervalDuration.value);
-}
-
+// Start and stop the game cycle
 function start() {
-  if (isRunning.value) {
-    return;
-  }
+  if (isRunning.value) return;
   isRunning.value = true;
   runGameCycle();
 }
 
 function stop() {
-  isRunning.value = false; // This will stop the runGameCycle loop
+  isRunning.value = false;
 }
 
 function reset() {
   stop();
-  generateTiles(); // reset grid
+  generateTiles();
 }
 
+// Game cycle logic
+function runGameCycle() {
+  if (!isRunning.value) return;
+
+  const nextState = tiles.value.map((tile, index) => {
+    const aliveNeighbors = getNeighbours(index);
+    const isAlive = tile.alive;
+    return { alive: (isAlive && aliveNeighbors === 2) || aliveNeighbors === 3 };
+  });
+
+  tiles.value = nextState;
+  setTimeout(runGameCycle, 1000 - (intervalDuration.value * props.speedPercentage / 100));
+}
+
+// Get the number of alive neighbors for a tile
+function getNeighbours(tileIndex) {
+  const directions = [
+    -1, 1,
+    -numCols.value, numCols.value,
+    -numCols.value - 1, -numCols.value + 1,
+    numCols.value - 1, numCols.value + 1
+  ];
+
+  return directions.reduce((count, direction) => {
+    const neighborIndex = tileIndex + direction;
+    if (
+      neighborIndex >= 0 &&
+      neighborIndex < numRows.value * numCols.value &&
+      tiles.value[neighborIndex].alive
+    ) {
+      count++;
+    }
+    return count;
+  }, 0);
+}
 </script>
 
 <template>
-  <main>
-    <div id="pane" class="pane">
-      <div v-for="(tile, index) in tiles"
-        class="tile" 
-        :class="{ aliveTile: tile.alive, deadTile: !tile.alive }"
-        @click="toggleTile(tile)">
+  <main class="flex items-center justify-center min-h-screen bg-gray-900 py-8">
+    <div class="game-container bg-black rounded-lg shadow-lg p-4 relative">
+      <!-- Grid Pane -->
+      <div
+        id="pane"
+        class="pane"
+        :style="{
+          height: paneHeight,
+          width: paneWidth,
+          gridTemplateColumns: `repeat(${numCols}, 32px)`,
+        }"
+      >
+        <div
+          v-for="(tile, index) in tiles"
+          :key="index"
+          class="tile"
+          :class="{ aliveTile: tile.alive, deadTile: !tile.alive }"
+          @click="toggleTile(tile)"
+        ></div>
       </div>
-    </div>
-    <div class="controls">
-      <button @click="showinfo">info</button>
-      <button @click="start">start</button>
-      <button @click="stop">pause</button>
-      <button @click="reset">reset</button>
-      <button @click="randomizeTiles">randomize</button>
-      <div class="slidecontainer">
-        <input type="range" min="50" max="950" v-model="intervalDuration" class="slider" id="myRange">
+
+      <!-- Controls (Shown Conditionally) -->
+      <div class="controls" v-if="showControls">
+        <button @click="showinfo">Info</button>
+        <button @click="start">Start</button>
+        <button @click="stop">Pause</button>
+        <button @click="reset">Reset</button>
+        <button @click="randomizeTiles">Randomize</button>
+        <button @click="saveState">Save State</button>
+        <button @click="loadState">Load State</button>
+        <div class="slidecontainer mt-4">
+          <input type="range" min="50" max="950" v-model="intervalDuration" class="slider" />
+        </div>
       </div>
-      <p v-if="info">
-        Conway's Game of Life rules: 
-        <p>1. if an alive tiles has 1 or less alive neighbors, it dies. </p>
-        <p>2. if a dead tile has 3 alive neighbors, it becomes alive.</p>
-        <p>3. if an alive tile has 2 or 3 neighbors, it keeps living</p>
-        <p>4. if an alive tile has 4 or more alive neighbors, it dies.</p>
-      </p>
     </div>
   </main>
 </template>
 
 <style scoped>
+/* Pane Styles */
 .pane {
-  overflow: hidden;
-  justify-content: center;
-  align-content: center;
-  background-color: #1D2D44;
-  display: flex;
-  position: absolute;
-  z-index: 9998;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  flex-wrap: wrap;
-  max-height: 100%;
-}
-.controls{
-  background-color: rgba(5, 5, 5, 0.8);
-  border-radius: 20px;
-  padding: 20px;
-  position: absolute;
-  width: fit-content;
-  bottom: 0;
-  left: 0;
-  z-index: 9999;
+  display: grid;
+  gap: 2px;
+  background-color: transparent;
+  margin: 0 auto;
 }
 
-button{
-  font-size: 1.2rem;
-}
-.slider{
-  min-width: 100%;
-}
+/* Tile Styling */
 .tile {
   width: 30px;
   height: 30px;
-  margin: 1px;
+  transition: background-color 0.2s ease;
 }
-.deadTile{
-  background-color: #1D2D44;
+
+/* Alive and Dead Tile Styles */
+.deadTile {
+  background-color: transparent;
 }
-.aliveTile{
-  background-color: rgb(196, 196, 196);
+
+.aliveTile {
+  background-color: var(--accent);
+  animation: pop 0.15s ease;
+}
+
+/* Controls */
+.controls {
+  background-color: rgba(5, 5, 5, 0.9);
+  border-radius: 10px;
+  padding: 1rem;
+  text-align: center;
+  margin-top: 1rem;
+}
+
+button {
+  font-size: 1rem;
+  color: white;
+  background-color: #007BFF;
+  padding: 0.5rem 1rem;
+  margin: 0.3rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+/* Animation for alive tiles */
+@keyframes pop {
+  0% {
+    transform: scale(0.8);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
 </style>

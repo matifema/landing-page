@@ -2,7 +2,7 @@
   <Header></Header>
   
   <div class="cursor-tracker">
-    <p>X: {{ position.x }}, Y: {{ position.y }}, %: {{ position.dist }}, T: {{ localTime }}</p>
+    <p>X: {{ position.x }}, Y: {{ position.y }}, %: {{ position.dist }}, T: {{ localTime }}, S: {{ timeSinceSpawn }}</p>
   </div>
 
   <main class="page-container">
@@ -34,6 +34,7 @@ const updatePosition = (event) => {
 };
 
 const localTime = ref('');
+const timeSinceSpawn = ref('');
 
 const updateClock = () => {
   const now = new Date();
@@ -41,6 +42,10 @@ const updateClock = () => {
   const minutes = String(now.getMinutes()).padStart(2, '0');
   const seconds = String(now.getSeconds()).padStart(2, '0');
   localTime.value = `${hours}:${minutes}:${seconds}`;
+
+  const spawnTime = new Date("November 02, 2001 02:14:00");
+  var difference = Math.abs(Math.round((now.getTime() - spawnTime.getTime()) / 1000));
+  timeSinceSpawn.value = `${difference}`;
 };
 
 let intervalId;

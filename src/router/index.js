@@ -47,6 +47,10 @@ const router = createRouter({
       component: () => import('../views/AddLinkView.vue')
     },
     {
+      path: '/theminicrossword',
+      component: () => import('../views/MiniCrossword.vue')
+    },
+    {
       path: "/:pathMatch(.*)*",
       name: "NotFound",
       component: () => import('../components/NotFound.vue')

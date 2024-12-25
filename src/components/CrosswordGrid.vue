@@ -241,28 +241,35 @@ export default {
 <style scoped>
 .crossword-grid {
   display: grid;
-  /* e.g. 5x5 grid if puzzle is 5 rows x 5 columns */
-  grid-template-columns: repeat(5, 80px);
-  grid-template-rows: repeat(5, 80px);
-  gap: 1px;
-  outline: none; /* needed because of tabindex="0" */
+  grid-template-columns: repeat(5, 1fr); /* Dynamically adjust for 5 columns */
+  gap: 2px;
   margin: 0 auto;
+  width: 100%; /* Ensure the grid stretches fully within its container */
+  max-width: 90vw; /* Limit maximum width to 90% of the viewport width */
+  max-height: 90vw; /* Match height to width for square aspect ratio */
+  aspect-ratio: 1 / 1; /* Maintain square shape for the entire grid */
 }
 
 .cell {
   position: relative;
-  width: 80px;
-  height: 80px;
   background-color: #fff;
+  width: 100%; /* Match grid column size */
+  padding-bottom: 100%; /* Maintain square aspect ratio */
 }
 
 .black-square {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
   background-color: rgb(36, 36, 36);
 }
 
 .white-square {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
   display: flex;
@@ -271,9 +278,10 @@ export default {
 }
 
 .letter {
-  font-size: 25px;
+  font-size: 1.5rem;
   color: black;
   font-weight: bold;
+  text-align: center;
 }
 
 /* Focus outline on the currently selected cell */
@@ -285,5 +293,24 @@ export default {
 /* Highlight entire row/column in yellow */
 .highlight {
   background-color: rgb(255, 255, 145);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .crossword-grid {
+    max-width: 100vw; /* Expand to full width on smaller screens */
+    max-height: 100vw; /* Keep height proportional */
+    gap: 1px; /* Reduce gap for compact screens */
+  }
+
+  .letter {
+    font-size: 1.2rem; /* Adjust font size */
+  }
+}
+
+@media (max-width: 480px) {
+  .letter {
+    font-size: 1rem; /* Further reduce font size */
+  }
 }
 </style>

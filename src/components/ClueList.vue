@@ -8,7 +8,6 @@
           v-for="item in acrossClues"
           :key="item.number"
           class="clue-item"
-          @click="handleClueClick(item, 'across')"
         >
           <strong>{{ item.number }}.</strong> {{ item.clue }}
         </li>

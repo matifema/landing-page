@@ -1,10 +1,10 @@
 <template>
   <div class="app-container">
-    <h1>🎅🏻 Happy Christmas Amore ☃️</h1>
+    <h1>🎅🏻 Merry Christmas Amore ☃️</h1>
     <p class="description">
-      This might be the nerdiest gift ever buuuut... I know how much you like
-      crosswords, so here's a little something for you to enjoy. Let’s see how
-      quickly you can solve it. Go on, the clock is ticking!
+      This might be the nerdiest gift ever buuuut... I know how much you obsess
+      over crosswords (and you got me hooked on them too), so here's a little
+      something for you to solve. Go on, scroll down, the clock's ticking!
     </p>
 
     <!-- Crossword and Clues -->
@@ -15,7 +15,7 @@
 
         <!-- Timer display -->
         <div class="timer">Time: {{ elapsedTime }}s</div>
-        
+
         <!-- Crossword Grid -->
         <CrosswordGrid
           ref="crosswordGrid"
@@ -33,7 +33,12 @@
     </div>
 
     <!-- Congratulation Modal -->
-    <div style="background-image: url('/hehe.jpg'); background-size:contain;" v-if="showModal" class="modal-overlay" @click.self="closeModal">
+    <div
+      style="background-image: url('/hehe.jpg'); background-size: contain"
+      v-if="showModal"
+      class="modal-overlay"
+      @click.self="closeModal"
+    >
       <div class="modal-content">
         <h2>BRAVISSIMA!</h2>
         <p>You’ve completed the crossword in {{ elapsedTime }}s!!!</p>

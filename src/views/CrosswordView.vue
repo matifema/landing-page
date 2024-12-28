@@ -41,7 +41,7 @@
     >
       <div class="modal-content">
         <h2>BRAVISSIMA!</h2>
-        <p>You’ve completed the crossword in {{ elapsedTime }}s!!!</p>
+        <p>You've completed the crossword in {{ elapsedTime }}s!!!</p>
         <button @click="closeModal">Close</button>
       </div>
     </div>
@@ -55,15 +55,34 @@ import Keyboard from "@/components/Keyboard.vue";
 import ClueList from "@/components/ClueList.vue";
 
 // Puzzle data and state
-const puzzleRows = ["GREGG", "----O", "CABIN", "O---K", "WELLY"];
+const puzzleRows = [
+  "-AIRFLANE--",
+  "-R-E----L--",
+  "-T-D---HERE",
+  "--------V--",
+  "W---BERNARD",
+  "E--G----T--",
+  "L--R----O--",
+  "LIKEITHERE-",
+  "Y--G-------",
+  "---GONKY---",
+  "-JES-------",
+];
+const puzzleRows2 = ["GREGG", "----O", "CABIN", "O---K", "WELLY"];
 const acrossClues = [
-  { number: 1, clue: "Your favorite English establishment." },
-  { number: 3, clue: "We want to buy one in the Alps." },
-  { number: 5, clue: "He loves me more than you. And I couldn't be happier." },
+  { number: 1, clue: "Was misspelled by both." },
+  { number: 2, clue: "Come ... NOW!" },
+  { number: 3, clue: "He has gills, is bright red and lives on your wall." },
+  { number: 4, clue: "Do you ... ?" },
+  { number: 5, clue: "It's that time." },
+  { number: 6, clue: "Affermative." },
 ];
 const downClues = [
-  { number: 3, clue: "You got chased by one once. It was not nice." },
-  { number: 5, clue: '"It\'s _____ time!"' },
+  { number: 1, clue: "He loves me more that he loves you. (HA-HA!)" },
+  { number: 2, clue: "That one bar." },
+  { number: 3, clue: "Fiery ..." },
+  { number: 4, clue: "Your favorite English enstablishment. (mine too)" },
+  { number: 5, clue: "Our origin story." },
 ];
 
 const gridData = ref([]);

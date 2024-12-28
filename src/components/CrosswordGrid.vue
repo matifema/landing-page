@@ -241,7 +241,7 @@ export default {
 <style scoped>
 .crossword-grid {
   display: grid;
-  grid-template-columns: repeat(5, 1fr); /* Dynamically adjust for 5 columns */
+  grid-template-columns: repeat(11, 1fr); /* Dynamically adjust for 5 columns */
   gap: 2px;
   margin: 0 auto;
   width: 100%; /* Ensure the grid stretches fully within its container */
